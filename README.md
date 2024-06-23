@@ -3,7 +3,7 @@
 ## 課程目標
 簡單來說，我們要做這個小遊戲。
 小遊戲 DEMO：[https://coding-impact.github.io/EvilWizard/](https://coding-impact.github.io/EvilWizard/)  
-Repository：[https://coding-impact.github.io/EvilWizard/](https://coding-impact.github.io/EvilWizard/)  
+Repository：[https://github.com/coding-impact/EvilWizard](https://github.com/coding-impact/EvilWizard)  
 
 詳細一點來說，是在每次 3 小時，總共 4 次，合計 12 小時的課程中，讓沒有經驗的高中生，能順利的在 GitHub 上架設免費網站，並且寫一個刺激有趣，但又基礎的小遊戲在上面。同時讓充滿經驗的高中生也不會感到無聊。
 
