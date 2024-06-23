@@ -91,10 +91,13 @@ Repository：[https://coding-impact.github.io/EvilWizard/](https://coding-impact
 <div class="container">
     <h2>epic cool game</h1>
     <p>not very cool, but stil very cool</p>
-    <canvas id="gameCanvas"></canvas>
+    <canvas id="gameCanvas" style="background-color: #ffffff;"></canvas>
 </div>
 <!-- 前後省略 -->
 ```
+記得要設定 `id`，這樣之後在程式碼中才能夠找到他，而設定背景顏色，則是為了方便知道畫布元素的大小。
+如果你不想要設定畫布顏色來知道畫布範圍的話，也可以打開偵錯工具的元件分頁，找到這個元素的位置，或通常按右鍵，選檢查，就能看到他的範圍。
+
 
 在 `index.js` 裡面填入以下內容：
 
@@ -125,12 +128,14 @@ canvas.addEventListener('mousemove', function(event) {
 
 ```
 
-完成後，回到網頁，打開網頁主控台。測試滑鼠進出、移動、鍵盤按鍵按下與鬆開有沒有出現對應紀錄。
+完成後，回到網頁，打開網頁主控台。測試滑鼠進出 `canvas`、滑鼠移動、鍵盤按鍵按下與鬆開有沒有出現對應紀錄。  
 
 如果都沒有問題，那就代表非常好，我們理論上，是可以做出這個遊戲的，至少需要的技術（讀取玩家輸入、渲染畫面）我們現在都有了，所以剩下的就是單純的程式了。
 
+如果你做的都沒問題，應該要看起來像這樣：[DEMO](https://coding-impact.github.io/saves/complete_html/)[原始碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/complete_html/)  
+
+
 # 製作課程目標需要知道的 JS 觀念
-> 正式開始製作遊戲，講解架構
 
 如果從資料產生的方式來分析的話（簡稱資料流），我們預計做的遊戲的結構會是這樣的：  
 ![](./pictures/basic_data_flow.png)  
@@ -138,5 +143,72 @@ canvas.addEventListener('mousemove', function(event) {
 更新資料包含了計算鏡頭移動、所有實體被看到的正確的型態、敵人行動等。   
 畫出新的畫面（簡稱渲染）包含了畫背景、畫所有實體、畫血條、畫文字等。  
 
-雖然感覺好像很複雜，不過大部分東西其實想到再加上去就好了，不用太有壓力。  
+我們會採用物件導向，和 [Entity Component System](https://en.wikipedia.org/wiki/Entity_component_system) 的方式來寫，整個遊戲引擎都包含在內。
+
+為什麼要使用物件導向？未完待補
+
+
+
+為什麼要使用 Entity Component System？未完待補
+
+
+
+而啟動遊戲開發可以分成三步：
+1. 先在邏輯層面寫出遊戲雛形
+2. 接到畫面上
+3. 持續完善
+
+## 在邏輯層面寫出遊戲雛形
+想要在落籍層面上寫出遊戲雛形，那麼我們得清楚我們想要寫的是什麼。
+
+我們會希望整個遊戲的架構是這樣的
+```js
+
+function gameLoop() {
+    update();
+    render();
+}
+```
+而當中 `update` 和 `render` 實際上都會是圍繞著一堆描述遊戲目前狀態的數據。為了方便起見，我們目前就先只思考遊戲中主要會出現的東西，也就是實體。我這邊把所有遊戲中會出現的物件，並且要渲染到畫面上，以遊戲世界座標為定位的東西稱為「實體」，實體只會描述實體們共通的基礎行為，如果需要更複雜的行為，例如之後會出現「粒子」，就可以繼承這個實體類別，定義一個粒子類別。
+
+所以我們就先來設計這個實體（Entity）吧
+```js
+export class Entity {
+  constructor(x, y) {
+    this.pos = new Vector(x, y);
+  }
+  update() {
+    // 每次更新要執行的函式
+  }
+  render() {
+    // 每次繪製要執行的函式
+  }
+};
+```
+這時候你會發現，上面提到了一個新東西，叫做 Vector，這是一個類別，我寫的，方便處理各種向量操作，目前先不用管他的實作細節，只需要先假裝，他就是一個向量，可以拿來做任何向量能做的事情就好，剩下的東西可以等之後再寫。
+
+那，有實體了，我們要如何在 update() 函數裡面更新 Entity 的狀態呢？  
+未來我們會寫另外一個物件來做這件事情，但目前我們可以先用列表代替。
+當我們想要新增實體時，就把實體加進去這個列表就好了。
+
+```js
+let entityList = [];
+function update(){
+    for (let i = 0; i < entityList.length; i++) {
+        entityList[i].update();
+    }
+}
+function render(){
+    for (let i = 0; i < entityList.length; i++) {
+        entityList[i].render();
+    }
+}
+
+function gameLoop() {
+    update();
+    render();
+}
+```
+先寫到這邊應該就沒問題了，剩下的之後再慢慢補足就好。
+
 
