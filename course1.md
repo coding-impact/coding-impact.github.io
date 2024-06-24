@@ -45,3 +45,30 @@
 接下來將會帶大家認識html、css、js的基本語法，可以在程式中自由發揮，設計你的網站。
 
 ## HTML 基本架構、常見語法
+
+### 基本架構
+
+*註：模板已在上一點提供，可直接更改內容進行測試。*
+
+1. 概述：html的寫法，就是用<>包起特定的型態，並以<> </>代表一個區域。
+
+2. 基本架構程式說明：
+   - `<!DOCTYPE html>`：告訴瀏覽器你用的語法是html
+   
+   - `<html>`：html程式最外圈
+     
+   - `<head>`：負責放所有的metadata（用來描述這份html文件的資料），讓瀏覽器正確呈現你想要的網頁效果
+     
+     - `<meta charset="UTF-8">`：這份文件的編譯方式，常見與預設都是UTF-8
+     
+     - `<meta name="viewport" content="width=device-width, initial-scale=1.0">`：可視範圍，一般設定寬度符合裝置、縮放比例1
+     
+     - `<title>`：網頁最上方的文字（比網址還上面的區域）
+     
+     - `<link rel="stylesheet" href="style.css">`：匯入你對html文件的css設計
+     
+     - 還有很多資訊可以放在head，有興趣可以看看[這個網站](https://ithelp.ithome.com.tw/articles/10237545)
+   
+   - `<body>`：網頁的內容，在這裡加入的東西都能在網頁上看見，例如文字、按鈕等等
+
+3. 常見語法
