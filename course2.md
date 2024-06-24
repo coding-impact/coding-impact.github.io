@@ -224,5 +224,3 @@ function gameLoop() {
     update();
     render();
 }
-```
-Ｆ
