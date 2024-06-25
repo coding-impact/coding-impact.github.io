@@ -3,6 +3,12 @@
 > 重點：  
 > 製作遊戲核心函式
 
+- 角色控制
+- 地圖繪製
+- 鏡頭跟隨
+- 角色動畫
+- 發射子彈
+
 ## 畫面渲染與角色控制
 
 上次我們已經在邏輯層面上稍微寫了一點東西，因此現在可以來實作他們了。
@@ -37,11 +43,13 @@ window.onresize = resize;
 
 ## 角色移動
 
+### 角色顯示
+
 解決完畫布不會自動縮放的小問題，那麼接下來就要來開始製作一個可以動的矩形了。  
-由於之後可能會有更多種 Entity，我們不直接修改 Entity 來達成這個行為，我們宣告一個 Player 類別，繼承 Entity，完整的檔案內容如下：
+由於之後可能會有更多種 `Entity`，我們不直接修改 `Entity` 來達成這個行為，我們宣告一個 `Player` 類別，繼承 `Entity`，完整的檔案內容如下：
 
 ```js
-import {randomDirection, randomWeightChoose, Vector} from 'utils.js';
+import {Vector} from './utils.js';
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -95,31 +103,98 @@ function gameLoop() {
     render();
 }
 
+setInterval(gameLoop, 1000 / 60);
 ```
 
-這時候，如果眼尖的同學可能會發現，`Entity` 其實是被我們當作抽象類來用，而裡面的 `update` 和 `render` 應該要寫成抽象函式才對，不過我覺得這有可能太抽象了，所以在這個營隊期間，我們用到物件導向的部分其實就只有繼承，而不會介紹其他更深入的內容。
+這時候，如果眼尖的同學可能會發現，`Entity` 其實是被我們當作抽象類來用，而裡面的 `Entity.update` 和 `Entity.render` 應該要寫成抽象函式才對，不過我覺得這有可能太抽象了，所以在這個營隊期間，我們用到物件導向的部分其實就只有繼承，而不會介紹其他更深入的內容。
 
-儲存 index.js 後，應該可以在畫面上看到一個藍色的矩形。
+儲存 `index.js` 後，應該可以在畫面上看到一個藍色的矩形。
 
-需要特別注意的是，在 render() 函式，有把 ctx 當作參數輸入進去。而這個 ctx 是在檔案的最一開始定義的。
+![screen shot 1](/pictures/screenshot1.png)
+
+需要特別注意的是，在 `render()` 函式，有把 `ctx` 當作參數輸入進去。而這個 `ctx` 是在檔案的最一開始定義的。
 
 > 關於 ctx：  
 > ctx 是 context 的縮寫，也就是指前後文，在這裡指的是 canvas 2d 繪製的環境。  
 > canvas 指的是 HTML 元素，而 ctx 就是 js 層面上的，操控畫布的入口。
 
+### 角色操控
+
+那麼接下來就是要讓鍵盤可以控制這個長方形移動，為了提升使用者的操作體驗，我最終使用了以下的操控方式。
+
 ```js
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+const pressedMap = {};
+const controlKeys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space'];
+
+document.addEventListener('keydown', function(event) {
+  if (event.code === 'Space' && !pressedMap['Space']) {
+    // handle player shoot
+  }
+  if (controlKeys.includes(event.code)) {
+    event.preventDefault()
+    pressedMap[event.code] = 1;
+  }
+});
+
+document.addEventListener('keyup', function(event) {
+  if (controlKeys.includes(event.code)) {
+    pressedMap[event.code] = 0;
+  }
+})
 
 function update() {
-  
+  player.control(pressedMap);
+  for (let i = 0; i < entityList.length; i++) {
+    entityList[i].update();
+  }
 };
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-};
+```
 
+比起單純的，根據按下的新按鍵來決定方向，這邊採取的作法是直接把目前的按鍵狀態包裝成一個 Map，再在更新時讓玩家根據這個狀態去修改自己的方向。
+
+```js
+class Player extends Entity:
+  // ... 前面省略
+  control(pressedMap) {
+    const walkSpeed = 4;
+    var direction = new Vector(0, 0);
+   
+    for (const key in pressedMap) {
+      if (Object.hasOwnProperty.call(pressedMap, key)) {
+        if (pressedMap[key]) {
+          switch (key) {
+            case 'KeyW':
+              direction.y += -1;
+              break;
+            case 'KeyA':
+              direction.x += -1;
+              break;
+            case 'KeyS':
+              direction.y += 1;
+              break;
+            case 'KeyD':
+              direction.x += 1;
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+    }
+    this.speed = direction.normal().multiply(speed);
+  }
+
+```
+
+這邊在做的事情非常簡單，就只是單純的根據輸入按鍵的狀態，計算出正確的方向。在經過標準化之後，再縮放到合適的長度。
+
+## 更好的更新畫面的方法
+
+requestAnimationFrame 能告告知瀏覽器我們想要更新畫面，並且也讓瀏覽器能在更新畫面時主動調用此函式，可以防止過度繪製，或是其他效能或顯示問題。
+
+```js
 
 var fps = 60; 
 var now;
@@ -141,22 +216,6 @@ function gameLoop() {
 requestAnimationFrame(gameLoop);
 
 ```
-
-- Entity
-  - Sprite
-    - Playaer
-    - EvilWizard
-  - Bullet
-    - SmallFireBall
-- EntityManager
-- TextManager
-- Camera
-- Vector
-- Map
-
-- Anima
-- Cursor
-- Particle
 
 ```js
 

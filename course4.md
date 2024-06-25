@@ -1,7 +1,7 @@
 # 7/5
+
 > 重點：  
 > 完成遊戲與自由發揮
-
 
 - 血量與魔力條
 - 角色技能
@@ -9,3 +9,18 @@
 - 勝負判定
 - 自由發揮
 
+- Entity
+  - Sprite
+    - Playaer
+    - EvilWizard
+  - Bullet
+    - SmallFireBall
+- EntityManager
+- TextManager
+- Camera
+- Vector
+- Map
+
+- Anima
+- Cursor
+- Particle

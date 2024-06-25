@@ -179,7 +179,7 @@ function gameLoop() {
 所以我們就先來設計這個實體（Entity）吧！  
 
 ```js
-import {Vector} from 'utils.js';
+import {Vector} from './utils.js';
 
 class Entity {
   constructor(x, y) {
@@ -196,7 +196,7 @@ class Entity {
 
 這時候你會發現，上面提到了一個新東西，叫做 Vector，這是一個類別，可以處理各種向量操作，請下載下來後，確定他的名字是 utils.js，並放到 index.js 旁邊。  
 
-[下載 utils.js](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/only_vector/utils.js)  
+[查看 utils.js](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/only_vector/utils.js)  
 
 目前裡面只會包含 Vector 相關的程式碼，在未來，這邊還會新增更多程式。  
 
