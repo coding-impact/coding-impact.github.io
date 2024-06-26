@@ -1,7 +1,8 @@
 # 2024 第十一屆北大飛鳶資工營 鳶程啟動 課務組
 
 ## 課程目標
-簡單來說，我們要做這個小遊戲。
+
+簡單來說，我們要做這個小遊戲。  
 小遊戲 DEMO：[https://coding-impact.github.io/EvilWizard/](https://coding-impact.github.io/EvilWizard/)  
 Repository：[https://github.com/coding-impact/EvilWizard](https://github.com/coding-impact/EvilWizard)  
 
@@ -10,14 +11,16 @@ Repository：[https://github.com/coding-impact/EvilWizard](https://github.com/co
 > 為什麼是這個課程目標？  
 > 因為，與北大資工課程有關聯（物件導向）、簡單容易製作（網頁）、方便展示（網頁）、有趣（遊戲）的綜合體，就是寫一個可以帶回家，永久運營的網頁小遊戲。
 
-
 ## 課前準備
+
 > 參與課程需要，或是建議準備的內容。
+
 - 在 ***上課前*** 註冊好 [GitHub](https://github.com) 帳號，避免上課時太多人註冊，而被黑名單。（我之前發生過）
 - 熟悉的開發環境，建議自備筆電、或是鍵盤之類的，以習慣為主。
   - 當然你也可以什麼都不帶，在現場使用遠端開發環境，或是其他免費的線上環境，但開發效率可能就會打一些折扣。
 
 ## 課程目錄
+
 - [7/3 上午](course1.md)
 - [7/3 下午](course2.md)
 - [7/4](course3.md)
