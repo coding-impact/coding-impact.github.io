@@ -8,11 +8,12 @@
 ## 認識Canvas
 
 上午我們已經學了html、css與js的基本知識，現在讓我們進一步學習canvas吧。
+
 簡單來說，canvas就是畫布，我們可以使用各種函式在上面繪製想要的圖案。
 
 ### Canvas 基本架構
 
-首先，我們在html檔案中建立一個canvas標籤。
+首先，我們在html檔案中建立一個canvas標籤： `<canvas id="canvas" width="150" height="150"></canvas>`
 
 ```html
 <!doctype html>
@@ -29,7 +30,7 @@
 </html>
 ```
 
-`<canvas id="canvas" width="150" height="150"></canvas>` 會建立一個150px*150px的畫布。
+這段標籤會建立一個150px*150px的畫布，你也可以自己修改大小。
 
 我們可以在css給canvas加上邊框，以更好觀察到它的範圍。
 
@@ -59,7 +60,7 @@ function draw() {
 
 <img src="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_default_grid.png">
 
-可以看見左上角為原點(0, 0)，向右、下計算x、y座標。
+可以看見左上角為原點(0, 0)，分別向右方、下方計算x、y座標與寬、高。
 
 方形是唯一可以直接使用canvas內建函式的圖形，我們就從方形開始認識吧！
 
@@ -69,18 +70,15 @@ function draw() {
 - `strokeRect(x, y, width, height)` ：畫出這個方形的邊框。
 - `clearRect(x, y, width, height)` ：清除這個方形範圍內的內容，變為全透明。
 
-*註：想改變填滿的顏色，可以使用`fillStyle = "顏色";`，後面還會介紹更多畫筆顏色的玩法。*
-
 將剛才設定的畫布作為前綴寫進draw函式：
 
 ```js
 const ctx = canvas.getContext("2d");  // 剛剛這行設定的變數名稱，會是下兩行的前綴（此處用ctx，可自行更改）
 
-ctx.fillStyle = "rgb(200 0 0)";       //設定填滿為紅色
 ctx.fillRect(10, 10, 50, 50);
 ```
 
-使用這段程式，我們可以看到畫面上出現一個紅色方形。
+使用這段程式，我們可以看到畫面上出現一個方形。
 
 ## 使用Canvas繪製路徑
 
@@ -96,7 +94,11 @@ ctx.fillRect(10, 10, 50, 50);
 
 - `stroke()`：畫出圖形的邊框（剛剛的筆跡），不會自動閉合。
 
+- `strokeStyle = 顏色`：改變畫出的邊框的顏色。
+  
 - `fill()`：填滿路徑內容，會自動閉合路徑並填滿。
+
+- `fillStyle = 顏色`：改變填滿的顏色。
 
 例如我們使用這段程式：
 
@@ -115,6 +117,46 @@ ctx.fill();
 但這是因為我們使用了`fill()`，若改為`stroke()`，就會發現筆跡其實是沒有閉合的。
 
 ## 使用Canvas繪製弧形
+
+- `arc(圓心X, 圓心Y, 半徑, 開始弧度, 結束弧度, 是否逆時針)`
+
+  弧度radians並不是角度degrees。參考換算公式：`radians = (Math.PI/180) * degrees`
+
+```js
+const ctx = canvas.getContext("2d");  // 變數名稱ctx可更改
+
+ctx.beginPath();
+ctx.arc(75, 75, 50, 0, Math.PI/2, false);
+ctx.stroke();
+```
+
+這段程式可以畫出圓心在(75, 75)，右下角的1/4圓弧。
+
+另外是貝茲曲線，繪畫規則如圖：
+
+<img src="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_curves.png">
+
+- `quadraticCurveTo(參考點1X, 參考點1Y, X, Y)`：從目前位置，根據參考點1，畫一條二次貝茲曲線到(X, Y)。
+
+- `bezierCurveTo(參考點1X, 參考點1Y, 參考點2X, 參考點2Y, X, Y)`：從目前位置，根據參考點1、2，畫一條三次貝茲曲線到(X, Y)。
+
+```js
+var ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.moveTo(75, 40);
+ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+ctx.fill();
+```
+這段程式可以畫一顆愛心。
+
+## 使用Canvas繪製影像
+
 
 
 <hr>
