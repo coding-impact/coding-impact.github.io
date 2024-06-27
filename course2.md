@@ -3,8 +3,121 @@
 > 重點：  
 > 製作遊戲基本架構
 
-- 認識 Canvas
 - 繪製圖案、多邊形、影像
+
+## 認識Canvas
+
+上午我們已經學了html、css與js的基本知識，現在讓我們進一步學習canvas吧。
+簡單來說，canvas就是畫布，我們可以使用各種函式在上面繪製想要的圖案。
+
+### Canvas 基本架構
+
+首先，我們在html檔案中建立一個canvas標籤。
+
+```html
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Canvas Test</title>
+    <link rel="stylesheet" href="style.css"> <!-- 放你要用的css檔 -->
+  </head>
+  <body>
+    <canvas id="canvas" width="150" height="150"></canvas>
+    <script src="script.js"></script> <!-- 放你要用的js檔 -->
+  </body>
+</html>
+```
+
+`<canvas id="canvas" width="150" height="150"></canvas>` 會建立一個150px*150px的畫布。
+
+我們可以在css給canvas加上邊框，以更好觀察到它的範圍。
+
+```css
+canvas {
+    border: 1px solid black;
+}
+```
+
+接著進入你的js檔，貼上這段函式：
+
+```js
+function draw() {
+    const canvas = document.getElementById("canvas");  // 取得畫布
+    if (canvas.getContext) {                           // 確認網站有支援canvas（最好做這一步）
+      const ctx = canvas.getContext("2d");             // 規格為2D平面，這行設定的變數名稱將用來呼叫畫布。（設定一次就好）
+    }
+  }
+  draw();
+```
+
+這樣一個可以畫畫的畫布就建立完成了，接下來我們會使用函式進行作畫。
+
+## 使用Canvas繪製方形
+
+開始前我們必須先了解canvas的座標計算方法，如圖：
+
+<img src="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_default_grid.png">
+
+可以看見左上角為原點(0, 0)，向右、下計算x、y座標。
+
+方形是唯一可以直接使用canvas內建函式的圖形，我們就從方形開始認識吧！
+
+繪製方形有三種函式：
+
+- `fillRect(x, y, width, height)` ：畫出一個填滿的方形。
+- `strokeRect(x, y, width, height)` ：畫出這個方形的邊框。
+- `clearRect(x, y, width, height)` ：清除這個方形範圍內的內容，變為全透明。
+
+*註：想改變填滿的顏色，可以使用`fillStyle = "顏色";`，後面還會介紹更多畫筆顏色的玩法。*
+
+將剛才設定的畫布作為前綴寫進draw函式：
+
+```js
+const ctx = canvas.getContext("2d");  // 剛剛這行設定的變數名稱，會是下兩行的前綴（此處用ctx，可自行更改）
+
+ctx.fillStyle = "rgb(200 0 0)";       //設定填滿為紅色
+ctx.fillRect(10, 10, 50, 50);
+```
+
+使用這段程式，我們可以看到畫面上出現一個紅色方形。
+
+## 使用Canvas繪製路徑
+
+跟畫畫一樣，canvas有移動筆、下筆的功能，不同的是canvas需要依靠路徑（筆跡）才知道該畫在哪裡。
+
+- `beginPath()`：產生新路徑，下筆前必須呼叫此函式紀錄筆跡。
+
+- `moveTo(X, Y)`：將筆移動到座標(X, Y)。
+
+- `lineTo(X, Y)`：畫一條直線到座標(X, Y)。
+
+- `closePath()`：可以自動閉合路徑，不一定需要。
+
+- `stroke()`：畫出圖形的邊框（剛剛的筆跡），不會自動閉合。
+
+- `fill()`：填滿路徑內容，會自動閉合路徑並填滿。
+
+例如我們使用這段程式：
+
+```js
+const ctx = canvas.getContext("2d");  // 變數名稱ctx可更改
+
+ctx.beginPath();
+ctx.moveTo(75, 50);
+ctx.lineTo(100, 75);
+ctx.lineTo(100, 25);
+ctx.fill();
+```
+
+就能得到一個填滿的三角形。
+
+但這是因為我們使用了`fill()`，若改為`stroke()`，就會發現筆跡其實是沒有閉合的。
+
+## 使用Canvas繪製弧形
+
+
+<hr>
 
 ## 製作遊戲要用的 HTML、CSS
 
