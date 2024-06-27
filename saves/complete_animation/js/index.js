@@ -1,7 +1,8 @@
 import {Anima} from './model/anima.js';
 import {Camera} from './model/camera.js'
-import {Player} from './model/entity.js'
+import {EvilWizard, Player} from './model/entity.js'
 import {Map, Tileset} from './model/map.js';
+
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -16,11 +17,26 @@ window.onresize = resize;
 
 let entityList = [];
 
-let player = new Player(32000, 32000, 512, {
-  'idle': new Anima('assets/evil_wizard/Idle.png', 8, 0.15),
+const general_speed = 0.15;
+const player = new Player(32000, 32000, 64, {
+  idle_down: new Anima('assets/player/idle_down.png', 1, general_speed),
+  idle_up: new Anima('assets/player/idle_up.png', 1, general_speed),
+  idle_left: new Anima('assets/player/idle_left.png', 1, general_speed),
+  idle_right: new Anima('assets/player/idle_right.png', 1, general_speed),
+  walk_down: new Anima('assets/player/walk_down.png', 2, general_speed),
+  walk_up: new Anima('assets/player/walk_up.png', 2, general_speed),
+  walk_left: new Anima('assets/player/walk_left.png', 2, general_speed),
+  walk_right: new Anima('assets/player/walk_right.png', 2, general_speed),
 });
+player.stat = 'idle_down';
 
 entityList.push(player);
+
+const enemy = new EvilWizard( 32000, 31800, 512, {
+  idle: new Anima('assets/evil_wizard/Idle.png', 8, general_speed),
+});
+entityList.push(enemy);
+
 const camera = new Camera(player, canvas)
 
 const rule = {
