@@ -7,7 +7,7 @@
 - 標題、段落、列表v
 - 插入圖片與連結v
 - 背景(應該歸在css)v
-- CSS 常見語法
+- CSS 常見語法v
 - 在 GitHub 上部署網站
 - 使用 JS 操控元素
 
@@ -16,7 +16,7 @@
   * [初始環境設定](#初始環境設定)
     + [一、安裝Visual Studio Code（VSC）與延伸模組](#一安裝visual-studio-codevsc與延伸模組)
     + [二、測試初始程式碼](#二測試初始程式碼)
-  * [HTML 基本架構](#html-基本架構)
+  * [HTML 基本觀念](#html-基本觀念)
     + [一、概述](#一概述)
     + [二、基本架構程式說明](#二基本架構程式說明)
   * [HTML 常見語法](#html-常見語法)
@@ -25,7 +25,7 @@
     + [三、列表、表格](#三列表表格)
   * [CSS 基本觀念](#css-基本觀念)
     + [一、概述](#一概述)
-    + [二、選擇器 —— class與id](#二選擇器--class與id)
+    + [二、選擇器 —— class & id & nth child](#二選擇器--class--id--nth-child)
     + [三、區塊 —— div與span](#三區塊--div與span)
   * [CSS 常見語法](CSS-常見語法)
     + [一、寬與高 width & height](#一寬與高-width--height)
@@ -34,6 +34,13 @@
     + [四、背景 background](#四背景-background)
     + [五、盒子模型 Box Model](#五盒子模型-box-model)
     + [六、互動效果](#六互動效果)
+  * [JavaScript 基本觀念](javascript-基本觀念)
+    + [一、變數、資料型態](#一變數資料型態)
+    + [二、運算子、條件式](#二運算子條件式)
+    + [三、函式](#三函式)
+  * [JavaScript 常見語法](javascript-常見語法)
+
+
 
 ## 簡介
 
@@ -81,7 +88,7 @@
 
 <hr>
 
-## HTML 基本架構
+## HTML 基本觀念
 
 *註：模板已在上一點提供，可直接更改內容進行測試。*
 
@@ -254,7 +261,7 @@
   > }
   > ```
 
-### 二、選擇器 —— class與id
+### 二、選擇器 —— class & id & nth child
 
 如果只想改變一篇文章的其中一段文字，該怎麼用css指定它呢？
 
@@ -303,6 +310,33 @@
   > **注意！** id的呼叫方式是在名稱前加**一個井字號（#）**。
   > 
   > 寫好css，這段文字就會從黑色變為藍色。但是，其他元素就不能使用id="blue"了。
+
+- **:nth child()**：
+  
+    指定多列元素中的其中幾個，括號可以填入odd（奇數項）、even（偶數項）或n的方程式。
+
+  > 例如想要選擇以下列表的奇數項：
+  > ```html
+  > <ol>
+  >    <li>第一項</li>
+  >    <li>第二項</li>
+  >    <li>第三項</li>
+  > </ol>
+  > ```
+  >
+  > 並將選擇的文字變為藍色，就在css這麼寫：
+  > ```css
+  > ol li:nth child(odd) {
+  >     color: blue;
+  > }
+  > ```
+  > 或是
+  > ```css
+  > ol li:nth child(2n+1) {
+  >     color: blue;
+  > }
+  > ```
+  
 
 *補充：想選中a元素裡面所有的b元素，也可以寫成 `a b { 設定 }` 的形式。*
 
@@ -556,4 +590,134 @@ css的各大設定都有顏色分支，因此優先介紹，後面出現color都
 *補充：如果你想去掉兩個元素之間的空隙，可以試著把margin跟padding都設為0。*
   
 ### 六、互動效果
+
+簡單的互動效果有兩種，元素碰到鼠標時改變css設定的 `元素:hover` 或鼠標點擊時改變的 `元素:active`。
+
+可以透過改變顏色color、透明度opacity，以及設定轉場延遲transition達到效果。
+
+例如希望鼠標碰到文字時，文字從黑色變為紅色且半透明，鼠標移開則恢復原狀，可以設定：
+
+```css
+p {
+ color: black;
+}
+
+p:hover {
+ color: red;
+ opacity: 0.5;
+}
+```
+
+假設我們希望變色的過程有0.4秒延遲，就在p加入transition進行設定。
+
+```css
+p {
+ color: black;
+ transition: 0.4s;
+}
+
+p:hover {
+ color: red;
+ opacity: 0.5;
+}
+```
+
+<hr>
+
+## JavaScript 基本觀念
+
+如果你寫過python、c、c++等任何一種程式語言，js對你而言應該很好理解。
+
+沒學過也沒關係，畢竟js光看英文就能略懂一二，各位既然對程式有興趣，相信學會js並不是什麼難事！
+
+### 一、變數、資料型態
+
+變數可以使用var、let、const定義。最泛用的是let，用它就行。
+
+資料型態就是變數內容的型態，基本分為字串string、數字number、布林值boolean，以及空值null與未定義undefined。
+
+```js
+let a = "apple"; // string
+let b = 1;       // number
+let c = true;    // boolean (true/false)
+let d = null;    // null，裡面沒有值
+let e;           // undefined，根本沒這東西
+```
+
+### 二、運算子、條件式
+
+熟悉的那些東西。
+- 運算子：
+
+  - 算術運算子：`+`、`-`、`*`、`/`、`=`，值得一提的是取餘數 `%`。
+  
+    17 % 4 = 1，代表17除4的餘數為1。
+  
+  - 指派運算子：懶人寫法， `+=`、`-=`、`*=`、`/=`、`%=`
+  
+    ```js
+    f = f + 1;
+    f += 1;    // 一樣意思
+    ```
+  
+  - 比較運算子：比較左右兩邊數字的同等或大小，`==`、`!=`、`>`、`<`、`>=`、`<=`，會回傳true或false
+  
+    ```js
+    let compare1 = (1 == 2);     // 1等於2嗎？false
+    let compare2 = (3*4 != 5);   // 3*4不等於5嗎？true
+    ```
+  
+  - 邏輯運算子：and `&&` 跟 or `||`，會回傳true或false
+  
+    ```js
+    let result1 = (true && false);   // false；兩個都要true才會回傳true，否則false
+    let result2 = (true || false);   // true；有一個是true就行
+    ```
+
+ - 條件式：
+   - 最簡單的 —— if/else if/else
+     ```js
+     if (a == 0 || a == 1){
+       console.log(1);
+     }else if(a == 2){
+       console.log(2);
+     }else{
+       console.log(3);
+     }
+     ```
+   - 更酷的 —— switch case
+     ```js
+     switch (a){
+       case 0:
+       case 1:
+         console.log(1);
+         break;
+       case 2:
+         console.log(2);
+         break;
+       default:
+         console.log(3);
+         break;
+     }
+     ```
+     
+### 三、函式
+
+手很痠不想同一段程式寫好幾遍，就用函式吧。
+
+```js
+function greeting(game) {
+  console.log(game + "，啟動!");
+}
+greeting("原神");   // "原神，啟動！"
+greeting("星鐵");   // "星鐵，啟動！"
+```
+
+恭喜，到這裡你已經學會了js的邏輯！
+
+## JavaScript 常見語法
+
+基於本課程寫js主要是為了配合網頁，我們首先來介紹如何在js中取得html的元素。
+
+### 一、取得元素
 
