@@ -86,19 +86,15 @@ ctx.fillRect(10, 10, 50, 50);
 
 - `beginPath()`：產生新路徑，下筆前必須呼叫此函式紀錄筆跡。
 
-- `moveTo(X, Y)`：將筆移動到座標(X, Y)。
+- `moveTo(X, Y)`：將筆移動到座標(X, Y)，此移動不算筆跡。
 
-- `lineTo(X, Y)`：畫一條直線到座標(X, Y)。
+- `lineTo(X, Y)`：畫一條直線到座標(X, Y)，此移動會被算進筆跡。
 
 - `closePath()`：可以自動閉合路徑，不一定需要。
 
 - `stroke()`：畫出圖形的邊框（剛剛的筆跡），不會自動閉合。
 
-- `strokeStyle = 顏色`：改變畫出的邊框的顏色。
-  
 - `fill()`：填滿路徑內容，會自動閉合路徑並填滿。
-
-- `fillStyle = 顏色`：改變填滿的顏色。
 
 例如我們使用這段程式：
 
@@ -155,9 +151,34 @@ ctx.fill();
 ```
 這段程式可以畫一顆愛心。
 
+## 改變繪圖顏色
+
+- `strokeStyle = 顏色`：改變畫出的邊框的顏色。
+
+- `fillStyle = 顏色`：改變填滿的顏色。
+
+[漸變顏色的做法可以參考這個網站。](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)
+
+
 ## 使用Canvas繪製影像
 
+- `drawImage(圖片, X, Y, 寬, 高)`：以座標(X, Y)為圖片右上角，畫出寬、高的圖片
 
+範例程式：
+```js
+function draw() {
+    const ctx = document.getElementById("canvas").getContext("2d");
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 20, 20, 60, 40);
+    };
+    img.src = "https://cdn.vox-cdn.com/uploads/chorus_asset/file/22312759/rickroll_4k.jpg";
+}  
+draw();
+```
+- `drawImage(圖片, 切割起點X, 切割起點Y, 切割寬, 切割高, X, Y, 寬, 高)`：
+
+  可以切割圖片的寫法，前面設定如何切割圖片，後面與前一條程式相同。
 
 <hr>
 
