@@ -178,6 +178,8 @@ draw();
 
   可以切割圖片的寫法，前面設定如何切割圖片，後面與前一條程式相同。
 
+*參考資料：[Canvas教學文件](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial)*
+
 <hr>
 
 ## 製作遊戲要用的 HTML、CSS
