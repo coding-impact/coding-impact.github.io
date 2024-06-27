@@ -37,10 +37,10 @@
     + [二、取得元素的css](#二取得元素的css)
     + [三、按鈕 button](#三按鈕-button)
     + [四、內建函式 Math](#四內建函式-math)
-  * [在 Github 部屬網站](#在-Github-部屬網站)
+  * [在 GitHub 部屬網站](#在-Github-部屬網站)
     + [一、建立儲存庫](#一建立儲存庫)
-    + [二、將網站檔案上傳Github](#二將網站檔案上傳github)
-    + [三、啟用 Github page](#三啟用-github-page)
+    + [二、將網站檔案上傳GitHub](#二將網站檔案上傳github)
+    + [三、啟用 GitHub page](#三啟用-github-page)
     + [四、進入網站](#四進入網站)
 
 
@@ -49,6 +49,8 @@
 一般前端網頁由HTML、CSS、JavaScript三種程式語言組成：HTML負責打底，CSS美化排版，JS則可以做出互動性。
 
 本次營隊將會帶大家一一認識它們，並在營隊課程結束時製作出一款簡單的射擊遊戲。
+
+而今天，我們會教大家它們的基礎觀念，讓大家發揮創意，製作個人網站，並部署到GitHub。
 
 ## 初始環境設定
 
@@ -824,40 +826,64 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
 
 <hr>
 
-## 在 Github 部屬網站
+## 在 GitHub 部屬網站
 
 把製作好的網站部屬到github上吧～
 
 ### 一、建立儲存庫
 
-1. 建立Github帳號。
+1. 建立github帳號。
 
 2. 點擊右上角「+」符號，選擇「New repository」。
 
-3. 填寫Repository name，作為這個儲存庫的名稱，並選擇設為私人或公開，其他都沒關係。
+3. 填寫Repository name，作為這個儲存庫的名稱，設為公開，其他都沒關係。
 
 4. 點擊「Create repository」
 
-### 二、將網站檔案上傳Github
+### 二、將網站檔案上傳GitHub
 
-1. 打開你的程式，拉出底下的終端機（如果沒看到的話）
+有兩種方式，你可以：
 
-2. 依序輸入：
-   ```bash
-   git init
-   git add .
-   git config --global user.email "你註冊github的郵箱"
-   git config --global user.name "你github的名字"
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/你github的名字/你設定的儲存庫名稱.git
-   git push -u origin main
-   ```
-3. 這時可能會跳出登入github的視窗，登入後終端機會繼續跑。
+- **使用終端機**（有點麻煩，但如果你已經有git就很快）
 
-### 三、啟用 Github page
+  1. 下載[Git](https://git-scm.com/downloads)，除了設定安裝路徑，一直點Next就好。
 
-1. 進入儲存庫主頁，找不到的話，網址會是https://github.com/你github的名字/你設定的儲存庫名稱
+  2. 安裝完成後，打開終端機（直接搜尋），輸入git看有沒有跳出git的使用說明，有就成功了。
+
+  3. 打開你的程式，拉出底下的終端機（如果沒看到的話）
+  
+  4. 依序輸入：
+     ```bash
+     git init
+     git add .
+     git config --global user.email "你註冊github的郵箱"
+     git config --global user.name "你github的名字"
+     git commit -m "Initial commit"
+     git branch -M main
+     git remote add origin https://github.com/你github的名字/你設定的儲存庫名稱.git
+     git push -u origin main
+     ```
+  5. 這時可能會跳出登入github的視窗，登入後終端機會繼續跑。
+
+- **使用GitHub for Desktop**（更簡單）
+
+  1. 下載 [GitHub for Desktop](https://desktop.github.com/)並開啟，登入你的GitHub帳號。
+  
+  2. 點選右邊「Add」，找到「Clone Repository」。
+  
+  3. 輸入剛才設定的儲存庫名稱，找到你的儲存庫。
+  
+  4. 設定Local Path，接著會需要把程式碼放在這裡。
+  
+  5. 將你的程式碼放到步驟4.設定的Local Path，可以看見GitHub Desktop自動偵測到新的檔案資料。
+  
+  6. 確認無誤後，在Summary跟Description填入你想填的內容，接著選擇「Commit to main」。
+  
+  7. 偵測到的檔案資料會全部消失，代表已經被上傳了，可以在History標籤查看紀錄。
+
+### 三、啟用 GitHub page
+
+1. 進入GitHub網站的儲存庫主頁，找不到的話，網址會是`https://github.com/你github的名字/你設定的儲存庫名稱`
 
 2. 在上方的工具列找到「Setting」，點擊進入。
 
@@ -867,7 +893,7 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
 
 5. 等一小段時間後，重新整理頁面，可以看見上方出現網址：
 
-   「Your site is live at https://你github的名字.github.io/你設定的儲存庫名稱/」
+   「Your site is live at `https://你github的名字.github.io/你設定的儲存庫名稱/`」
 
 ### 四、進入網站
 
