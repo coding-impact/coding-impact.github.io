@@ -38,7 +38,12 @@
     + [一、變數、資料型態](#一變數資料型態)
     + [二、運算子、條件式](#二運算子條件式)
     + [三、函式](#三函式)
-  * [JavaScript 常見語法](javascript-常見語法)
+    + [四、陣列](#四陣列)
+    + [五、物件](#五物件)
+  * [JavaScript 常見語法](#javascript-常見語法)
+    + [一、取得元素](#一取得元素)
+    + [二、內建函式 Math](#二內建函式-math)
+    + [三、按鈕 button](#三按鈕-button)
 
 
 
@@ -700,7 +705,7 @@ let e;           // undefined，根本沒這東西
          break;
      }
      ```
-     
+
 ### 三、函式
 
 手很痠不想同一段程式寫好幾遍，就用函式吧。
@@ -713,6 +718,30 @@ greeting("原神");   // "原神，啟動！"
 greeting("星鐵");   // "星鐵，啟動！"
 ```
 
+### 四、陣列
+
+把同型態的東西存在一起。
+
+```js
+let games = ["原神", "星穹鐵道", "明日方舟"];
+console.log(games[0]); // "原神"
+console.log(games.length); // 3
+```
+
+### 五、物件
+
+把不同型態的東西存在一起。
+
+```js
+let student = {
+  name: "醬油",
+  age: 20,
+  isStudent: true
+};
+console.log(student.name); // "醬油"
+console.log(person["age"]); // 20
+```
+
 恭喜，到這裡你已經學會了js的邏輯！
 
 ## JavaScript 常見語法
@@ -720,4 +749,44 @@ greeting("星鐵");   // "星鐵，啟動！"
 基於本課程寫js主要是為了配合網頁，我們首先來介紹如何在js中取得html的元素。
 
 ### 一、取得元素
+
+有選到就行，沒有要求一定要用哪個。不過常用的是getElementById，比較不容易選錯。
+
+- 直接選：
+  ```js
+  let element1 = document.querySelector('.select');    // 第一個有 .select 的元素
+  let element2 = document.querySelectorAll('.select'); // 所有擁有 .select 的元素
+  ```
+
+- 用標籤選：
+  ```js
+  let element3 = document.getElementsByTagName('div');     // 所有的<div>
+  ```
+
+- 用class名稱選：
+  ```js
+  let element4 = document.getElementsByClassName('select'); // 所有擁有class select的元素
+  ```
+
+- 用id名稱選：
+  ```js
+  let element5 = document.getElementById('fancy'); // 擁有id fancy的元素
+  ```
+
+### 二、內建函式 Math
+
+常見跟數學有關的功能都有，[有興趣可以看看這個網站。](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
+
+```js
+let randnum = Math.random();     // 取一個0～1之間的隨機小數
+
+let ceilnum = Math.ceil(0.95);   // 1；取大於此數的最小整數（天花板）
+let floornum = Math.floor(0.95); // 0；取小於此數的最大整數（地板）
+
+let maxnum = Math.max(1, 2, 3);  // 3；取括號裡最大值。可以放陣列。
+let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列。
+```
+
+### 三、按鈕 button
+
 
