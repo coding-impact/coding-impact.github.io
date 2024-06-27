@@ -11,6 +11,11 @@
 - 在 GitHub 上部署網站
 - 使用 JS 操控元素
 
+## 目錄
+
+1. [簡介](##簡介)
+2. [初始環境設定](初始環境設定)
+
 ## 簡介
 
 一般前端網頁由HTML、CSS、JavaScript三種程式語言組成：HTML負責打底，CSS美化排版，JS則可以做出互動性。
@@ -85,7 +90,7 @@
      
      - `<link rel="stylesheet" href="style.css">`：匯入你對html文件的css設計。
      
-     > 還有很多資訊可以放在head，有興趣可以看看[這個網站](https://ithelp.ithome.com.tw/articles/10237545)。
+     > 還有很多資訊可以放在head，[有興趣可以看看這個網站。](https://ithelp.ithome.com.tw/articles/10237545)
    
    - `<body>`：網頁的內容，與head不同的是，在這裡加入的東西都能在網頁上看見，例如文字、按鈕等等。
      
@@ -215,7 +220,9 @@
 
 ## CSS 基本觀念
 
-寫好html後，會發現內容只有黑底白字，非常單調，因此我們需要使用css進一步設計。
+寫好html後，會發現內容只有黑底白字，也沒有一般網站那種漂亮的排版，非常單調！
+
+因此，我們需要使用css進一步設計。
 
 ### 一、概述
 
@@ -279,11 +286,17 @@
   > 
   > 寫好css，這段文字就會從黑色變為藍色。但是，其他元素就不能使用id="blue"了。
 
+*補充：想選中a元素裡面所有的b元素，也可以寫成 `a b { 設定 }` 的形式。*
+
+*[想練習選擇器的使用方法，可以來玩玩這個網站。](https://flukeout.github.io/)*
+
 ### 三、區塊 —— div與span
 
 想選擇一塊區域，而非像class或id這種個別元素的話，該怎麼做呢？
 
 這種時候，我們可以使用div或span，以在css選中特定的區域。
+
+繼承關係：對父標籤做css設定時，子標籤都會得到相同設定
 
 - **大區塊 div**：
 
@@ -291,44 +304,161 @@
     
     **⮕ div標籤後會換行**
     
-  > 例如希望一段文字 `<p> </p>` 擁有名為blue的class，就在html這麼寫：
+  > 例如希望兩段文字 `<p> </p>` 都變為綠色，我們可以使用div包裹它們：
   > ```html
-  > <p class="blue"> 藍色文字 </p>
+  > <div>
+  >     <p> 綠色文字1 </p>
+  >     <p> 綠色文字2 </p>
+  > </div>
   > ```
   >
-  > 接著我們希望class blue的元素變成藍色，就在css這麼寫：
+  > 接著我們在css對div做設定：
   > ```css
-  > .blue {
-  >     color: blue;
+  > div {
+  >     color: green;
   > }
   > ```
   >
-  > **注意！** class的呼叫方式是在名稱前加**一個句點（.）**。
-  > 
-  > 寫好css，這段文字就會從黑色變為藍色。並且，在其他文字加入class="blue"也會使之變為藍色。
+  > 此時兩段文字都會變為綠色。
 
-- **小區塊 span**：
+- **小區域 span**：
 
     相比div可以涵蓋更小的區域。
 
     **⮕ span標籤後不會換行**
 
-  > 例如希望一段文字 `<p> </p>` 擁有名為blue的id，就在html這麼寫：
+  > 例如希望一段文字 `<p> </p>` 的其中幾個字變為綠色，可以使用span包裹它們：
   > ```html
-  > <p id="blue"> 藍色文字 </p>
+  > <p> 黑色字<span>綠色字</span> </p>
   > ```
   >
   > 接著我們希望id blue的元素變成藍色，就在css這麼寫：
   > ```css
-  > #blue {
-  >     color: blue;
+  > span {
+  >     color: green;
   > }
   > ```
   >
-  > **注意！** id的呼叫方式是在名稱前加**一個井字號（#）**。
-  > 
-  > 寫好css，這段文字就會從黑色變為藍色。但是，其他元素就不能使用id="blue"了。
+  > 此時只有span裡面的字會變為綠色。
 
 ## CSS 常見語法
 
-### 一、
+### 一、顏色 color
+
+css的各大設定都有顏色分支，因此將顏色列為第一個介紹。
+
+顏色可以使用以下三種方式設定。
+
+- **十六進位制**： `color: #XXXXXX;`
+
+  > 如果你是用vsc，從調色盤直接選顏色，就會顯示十六進制色碼。
+  > 
+  > [或是這個調色盤網站。](https://www.ifreesite.com/color/)
+
+- **RGB**： `color: rgb(R, G, B);` 或 `color: rgb(R%, G%, B%);`
+
+  > R、G、B分別可以填入數字0~255，或是百分比。
+  > 
+  > `color: rgb(0, 0, 0);` 是白色，`color: rgb(255, 255, 255);` 是黑色。
+
+- **顏色名稱**： `color:顏色名稱;`
+
+  > 有很多種，[這個網站都有收錄。](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color)
+
+### 二、背景
+
+
+
+### 三、盒子模型 Box Model
+
+在css裡，每個html元素都可以被視為一個盒子，這樣我們就能對它的周圍進行調整，達到排版的目的。
+
+盒子模型分為**邊界(Margin)**、**邊框(Border)**、**留白(Padding)**，如圖所示：
+
+<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSJZcyHWFjKEHQz_m327BjXtGKhZPy9jomSOsTJixn-RdBHk0t4">
+
+- **邊界 Margin**：
+
+  在邊框之外，是不同元素之間的距離。
+
+  設定邊界大小有三種方式，
+
+  - 長度（例如5px），有很多單位，最常見的是px。[有關長度單位可以看這個網站。](https://noob.tw/css-units/)
+
+  - 百分比（例如10%），是該元素所處區域的百分比。
+
+  - auto，指目前的可用空間。
+
+  邊界有上下左右之分，也可以用同一段程式解決：
+
+  - `margin: 5px 10% auto 20px;` ：四個數字，設定上、下、左、右邊界。
+
+  - `margin: 5px 10% auto;` ：三個數字，設定上、左右、下邊界。
+
+  - `margin: 5px 10%;` ：兩個數字，設定上下、左右邊界。
+
+  - `margin: 5px;` ：一個數字，同時設定四個邊界。
+
+- **邊框 Border**：
+
+  邊框屬性有以下幾種，
+
+  - `border-style`：邊框的樣式，如圖。
+    
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4qXL2I-2NFpbNyd8_rHmilwjrtVjyWaInvFoEO9fgAVq1hbgvBmBJkBNx-4pF40lcwOk&usqp=CAU">
+
+    > 例如
+    > ```css
+    > border-style: dotted;
+    > ```
+    > 可以把邊框變成點點。
+    
+  - `border-width`：邊框的厚度，使用長度設定大小。
+
+    > 例如
+    > ```css
+    > border-width: 5px;
+    > ```
+    > 可以把邊框設為5px厚。
+    
+  - `border-color`：邊框的顏色。
+
+    > 例如
+    > ```css
+    > border-color: blue;
+    > ```
+    > 可以把邊框設為藍色。
+    
+  - `border-top-`、`border-left-`、`border-right-`、`border-bottom-`：在後面加入要設定的東西，就能只對其中一邊做改變。
+
+    > 例如
+    > ```css
+    > p {
+    >     border-bottom-width: 5px;
+    >     border-bottom-style: dotted;
+    > }
+    > ```
+    > 可以讓p以內的文字有一條5px點點底線。
+
+  - `border`：如果四個邊都一樣，可以直接設定在同一行。
+
+    > 例如
+    > ```css
+    > border: blue 5px dotted;
+    > ```
+    > 就能得到藍色、5px厚的點點邊框。
+    
+- **留白 Padding**：
+
+  跟margin差不多，不過padding在邊框內，所以一般直接用長度設定。
+
+  - `padding: 5px 10px 15px 20px;` ：四個數字，設定上、下、左、右留白。
+
+  - `padding: 5px 10px 15px;` ：三個數字，設定上、左右、下留白。
+
+  - `padding: 5px 10px;` ：兩個數字，設定上下、左右留白。
+
+  - `padding: 5px;` ：一個數字，同時設定四個邊的留白。
+
+*補充：如果你想去掉兩個元素之間的空隙，可以試著把margin跟padding都設為0px。*
+  
