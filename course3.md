@@ -1484,6 +1484,7 @@ canvas.addEventListener("mouseenter", () => {
   cursor.show();
 });
 
+cursor.show();
 canvas.addEventListener("mousemove", function (event) {
   cursor.moveTo(
     event.clientX - canvas.offsetLeft,
@@ -1491,6 +1492,8 @@ canvas.addEventListener("mousemove", function (event) {
   );
 });
 ```
+
+之所以要添加一個顯示游標，是為了防止一開始游標就在畫布內，導致游標無法顯示。
 
 最後記得要添加隱藏游標的 CSS，請添加在 `index.html` 裡面。
 

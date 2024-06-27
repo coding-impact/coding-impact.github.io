@@ -105,6 +105,7 @@ canvas.addEventListener('mouseenter', () => {
   cursor.show();
 });
 
+cursor.show();
 canvas.addEventListener('mousemove', function(event) {
   cursor.moveTo(
       event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);

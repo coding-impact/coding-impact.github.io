@@ -5,6 +5,8 @@ import {EvilWizard} from './model/enemy.js';
 import {EntityManager} from './model/entity.js'
 import {Map, Tileset} from './model/map.js';
 import {Player} from './model/player.js';
+import {BossBar, TextManager, UIManager} from './model/UI.js';
+import {sleep} from './utils.js';
 
 const cursor = new Cursor();
 const canvas = document.getElementById('gameCanvas');
@@ -19,7 +21,7 @@ window.onresize = resize;
 
 
 const general_speed = 0.15;
-const player = new Player(32000, 32000, 64, 24, 60, 0, 0, {
+const player = new Player(32000, 32000, 64, 24, 60, 0, 0, 100, 100, {
   idle_down: new Anima('assets/player/idle_down.png', 1, general_speed),
   idle_up: new Anima('assets/player/idle_up.png', 1, general_speed),
   idle_left: new Anima('assets/player/idle_left.png', 1, general_speed),
@@ -31,9 +33,16 @@ const player = new Player(32000, 32000, 64, 24, 60, 0, 0, {
 });
 player.stat = 'idle_down';
 
-const enemy = new EvilWizard(32000, 31800, 512, 24, 96, 0, 32, {
+const enemy = new EvilWizard(32000, 31800, 512, 24, 96, 0, 32, 100, 100, {
   idle: new Anima('assets/evil_wizard/Idle.png', 8, general_speed),
 });
+enemy.hide();
+
+
+const textManager = new TextManager(canvas);
+const uiManager = new UIManager();
+const bossBar = new BossBar(enemy);
+uiManager.addUI(bossBar);
 
 const entityManager = new EntityManager();
 entityManager.add(player);
@@ -79,9 +88,14 @@ map.init();
 const pressedMap = {};
 const controlKeys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space'];
 
+let stop = false;
+
 document.addEventListener('keydown', function(event) {
+  if (event.code === 'KeyC') {
+    stop = true;
+  }
   if (event.code === 'Space' && !pressedMap['Space']) {
-    // handle player shoot
+    player.shoot(camera, cursor, entityManager);
   }
   if (controlKeys.includes(event.code)) {
     event.preventDefault()
@@ -116,11 +130,16 @@ function update() {
 }
 
 function render() {
+  if (stop) {
+    return;
+  }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   map.render(ctx, canvas, camera);
   entityManager.render(ctx, camera);
+  uiManager.render(ctx, canvas);
+  textManager.render(ctx);
   cursor.render(ctx);
-}
+};
 
 var fps = 60;
 var now;
@@ -140,3 +159,27 @@ function gameLoop() {
   }
 }
 requestAnimationFrame(gameLoop);
+
+async function main() {
+  await sleep(2000);
+  textManager.addText('第一關：青青草原');
+  textManager.addText('Stage 1: Grass Land');
+  await sleep(2000);
+  textManager.addText('莫名其妙的紫色大法師');
+  textManager.addText('The Mysterious Purple Mage');
+  await sleep(1000);
+  enemy.pos = player.pos.copy();
+  enemy.pos.y -= 400;
+
+  camera.target = enemy;
+  await sleep(1000);
+  textManager.textList = [];
+  await sleep(2000);
+  enemy.show();
+  await sleep(1000);
+  bossBar.show();
+  await sleep(500);
+  camera.target = player;
+}
+
+main().then()
