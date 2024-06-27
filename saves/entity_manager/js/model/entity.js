@@ -16,7 +16,7 @@ export class Entity {
 export class Sprite extends Entity {
   constructor(x, y, height, animaMap) {
     super(x, y);
-    this.type = 'Sprite';
+    
     this.stat = 'idle';
     this.animaMap = animaMap;
     this.height = height
@@ -43,6 +43,7 @@ export class EntityManager {
     });
   }
   render(ctx, camera) {
+    this.entityList.sort((a, b) => a.pos.y - b.pos.y);
     this.entityList.forEach((entity) => {
       entity.render(ctx, camera);
     });
