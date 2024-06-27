@@ -27,10 +27,5 @@
     - SmallFireBall
 - EntityManager
 - TextManager
-- Camera
-- Vector
-- Map
 
-- Anima
-- Cursor
 - Particle

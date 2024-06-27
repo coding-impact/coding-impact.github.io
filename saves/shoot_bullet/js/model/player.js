@@ -1,0 +1,76 @@
+import {Vector} from '../utils.js';
+
+import {Anima} from './anima.js';
+import {Entity, Sprite} from './entity.js';
+
+export class Bullet extends Entity {
+  constructor(x, y, power, accerate) {
+    super(x, y);
+    this.power = power;
+    this.accerate = accerate;
+    this.speed = this.accerate.normal().multiply(this.power);
+  }
+  update() {
+    this.speed = this.speed.add(this.accerate);
+    super.update();
+  }
+}
+
+const smallFireBallAnima =
+    new Anima('assets/bullet/small_fire_ball.png', 4, 0.15);
+
+export class SmallFireBall extends Bullet {
+  constructor(...args) {
+    super(...args);
+    this.animation = smallFireBallAnima;
+  }
+  render(ctx, camera) {
+    this.animation.render(
+        ctx, camera, this.pos.x, this.pos.y, 32,
+        Math.atan2(this.speed.y, this.speed.x) - Math.PI / 2);
+  }
+}
+
+export class Player extends Sprite {
+  shoot(camera, cursor, entityManager) {
+    const power = 5;
+    const acc = this.pos.add(cursor.pos.add(camera.pos).multiply(-1))
+                    .normal()
+                    .multiply(-0.1);
+    const bullet = new SmallFireBall(this.pos.x, this.pos.y, power, acc);
+    entityManager.add(bullet);
+  }
+  control(pressedMap) {
+    const walkSpeed = 4;
+    var direction = new Vector(0, 0);
+    this.stat = this.stat.replace('walk', 'idle');
+    for (const key in pressedMap) {
+      if (Object.hasOwnProperty.call(pressedMap, key)) {
+        if (pressedMap[key]) {
+          switch (key) {
+            case 'KeyW':
+              direction.y += -1;
+              this.stat = 'walk_up';
+              break;
+            case 'KeyA':
+              direction.x += -1;
+              this.stat = 'walk_left';
+              break;
+            case 'KeyS':
+              direction.y += 1;
+              this.stat = 'walk_down';
+              break;
+            case 'KeyD':
+              direction.x += 1;
+              this.stat = 'walk_right';
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+    }
+    this.speed = direction.normal().multiply(walkSpeed);
+  }
+}
