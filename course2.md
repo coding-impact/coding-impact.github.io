@@ -3,8 +3,6 @@
 > 重點：  
 > 製作遊戲基本架構
 
-- 繪製圖案、多邊形、影像
-
 ## 認識Canvas
 
 上午我們已經學了html、css與js的基本知識，現在讓我們進一步學習canvas吧。
@@ -24,7 +22,7 @@
     <link rel="stylesheet" href="style.css"> <!-- 放你要用的css檔 -->
   </head>
   <body>
-    <canvas id="canvas" width="150" height="150"></canvas>
+    <canvas id="canvas" width="150" height="150"></canvas> <!-- 添加這行 -->
     <script src="script.js"></script> <!-- 放你要用的js檔 -->
   </body>
 </html>
