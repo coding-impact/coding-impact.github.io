@@ -34,7 +34,7 @@
     + [四、背景 background](#四背景-background)
     + [五、盒子模型 Box Model](#五盒子模型-box-model)
     + [六、互動效果](#六互動效果)
-  * [JavaScript 基本觀念](javascript-基本觀念)
+  * [JavaScript 基本觀念](#javascript-基本觀念)
     + [一、變數、資料型態](#一變數資料型態)
     + [二、運算子、條件式](#二運算子條件式)
     + [三、函式](#三函式)
@@ -46,6 +46,10 @@
     + [三、按鈕 button](#三按鈕-button)
     + [四、內建函式 Math](#四內建函式-math)
   * [在 Github 部屬網站](#在-Github-部屬網站)
+    + [一、建立儲存庫](#一建立儲存庫)
+    + [二、將網站檔案上傳Github](#二將網站檔案上傳github)
+    + [三、啟用 Github page](#三啟用-github-page)
+    + [四、進入網站](#四進入網站)
 
 
 ## 簡介
@@ -829,3 +833,48 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
 ## 在 Github 部屬網站
 
 把製作好的網站部屬到github上吧～
+
+### 一、建立儲存庫
+
+1. 建立Github帳號。
+
+2. 點擊右上角「+」符號，選擇「New repository」。
+
+3. 填寫Repository name，作為這個儲存庫的名稱，並選擇設為私人或公開，其他都沒關係。
+
+4. 點擊「Create repository」
+
+### 二、將網站檔案上傳Github
+
+1. 打開你的程式，拉出底下的終端機（如果沒看到的話）
+
+2. 依序輸入：
+   ```bash
+   git init
+   git add .
+   git config --global user.email "你註冊github的郵箱"
+   git config --global user.name "你github的名字"
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/你github的名字/你設定的儲存庫名稱.git
+   git push -u origin main
+   ```
+3. 這時可能會跳出登入github的視窗，登入後終端機會繼續跑。
+
+### 三、啟用 Github page
+
+1. 進入儲存庫主頁，找不到的話，網址會是https://github.com/你github的名字/你設定的儲存庫名稱
+
+2. 在上方的工具列找到「Setting」，點擊進入。
+
+3. 在左方的工具列找到「Pages」，點擊進入。
+
+4. 在大標題「Build and deployment」下找到「Branch」，兩個選項分別設為「main」跟「/(root)」，再點擊「save」儲存。
+
+5. 等一小段時間後，重新整理頁面，可以看見上方出現網址：
+
+   「Your site is live at https://你github的名字.github.io/你設定的儲存庫名稱/」
+
+### 四、進入網站
+
+點進網址能看見自己的網站，就成功了！
