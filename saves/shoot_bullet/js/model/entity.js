@@ -16,7 +16,7 @@ export class Entity {
 export class Sprite extends Entity {
   constructor(x, y, height, boxW, boxH, boxOffsetX, boxOffsetY, animaMap) {
     super(x, y);
-    this.type = "Sprite";
+    
     this.stat = "idle";
     this.animaMap = animaMap;
     this.height = height;

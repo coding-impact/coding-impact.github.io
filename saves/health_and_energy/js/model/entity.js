@@ -14,9 +14,20 @@ export class Entity {
 };
 
 export class Sprite extends Entity {
-  constructor(x, y, height, boxW, boxH, boxOffsetX, boxOffsetY, animaMap) {
+  constructor(
+    x,
+    y,
+    height,
+    boxW,
+    boxH,
+    boxOffsetX,
+    boxOffsetY,
+    maxHealth,
+    maxEnergy,
+    animaMap
+  ) {
     super(x, y);
-    
+
     this.stat = "idle";
     this.animaMap = animaMap;
     this.height = height;
@@ -24,27 +35,25 @@ export class Sprite extends Entity {
     this.boxH = boxH;
     this.boxOffsetX = boxOffsetX;
     this.boxOffsetY = boxOffsetY;
+
+    this.maxHealth = maxHealth;
+    this.maxEnergy = maxEnergy;
+    this.health = this.maxHealth;
+    this.energy = this.maxEnergy;
   }
 
   render(ctx, camera) {
     this.animaMap[this.stat].render(
-      ctx,
-      camera,
-      this.pos.x,
-      this.pos.y,
-      this.height
-    );
+        ctx, camera, this.pos.x, this.pos.y, this.height);
     this.renderHitBox(ctx, camera);
   }
   renderHitBox(ctx, camera) {
     ctx.beginPath();
-    ctx.fillStyle = "#00FF0030";
+    ctx.fillStyle = '#00FF0030';
     ctx.fillRect(
-      this.pos.x - camera.pos.x - this.boxW / 2 + this.boxOffsetX,
-      this.pos.y - camera.pos.y - this.boxH / 2 + this.boxOffsetY,
-      this.boxW,
-      this.boxH
-    );
+        this.pos.x - camera.pos.x - this.boxW / 2 + this.boxOffsetX,
+        this.pos.y - camera.pos.y - this.boxH / 2 + this.boxOffsetY, this.boxW,
+        this.boxH);
     ctx.closePath();
   }
 }
@@ -65,8 +74,8 @@ export class EntityManager {
   }
   render(ctx, camera) {
     this.entityList.sort(
-      (a, b) => (a.pos.y + a.boxH / 2 + a.boxOffsetY) -
-          (b.pos.y + b.boxH / 2 + b.boxOffsetY));
+        (a, b) => (a.pos.y + a.boxH / 2 + a.boxOffsetY) -
+            (b.pos.y + b.boxH / 2 + b.boxOffsetY));
     this.entityList.forEach((entity) => {
       entity.render(ctx, camera);
     });
