@@ -1,4 +1,19 @@
+export function randomWeightChoose(weightMap) {
+  const totalWeight =
+      Object.values(weightMap).reduce((sum, weight) => sum + weight, 0);
+  const randomValue = Math.random() * totalWeight;
 
+  let currentWeight = 0;
+  for (const [key, weight] of Object.entries(weightMap)) {
+    currentWeight += weight;
+    if (randomValue <= currentWeight) {
+      return key;
+    }
+  }
+
+  // This should not happen, but just in case
+  return null;
+}
 export class Vector {
   constructor(x, y) {
     this.x = x;
