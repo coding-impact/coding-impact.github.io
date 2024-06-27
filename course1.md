@@ -624,6 +624,8 @@ css的各大設定都有顏色分支，因此優先介紹，後面出現color都
 > }
 > ```
 
+*參考資料：[CSS語法](https://www.1keydata.com/css-tutorial/tw/syntax.php)*
+
 <hr>
 
 ## JavaScript 基本觀念
