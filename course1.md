@@ -881,7 +881,7 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
 
 ### 三、啟用 GitHub page
 
-1. 進入GitHub網站的儲存庫主頁，找不到的話，網址會是https://github.com/你github的名字/你設定的儲存庫名稱
+1. 進入GitHub網站的儲存庫主頁，找不到的話，網址會是`https://github.com/你github的名字/你設定的儲存庫名稱`
 
 2. 在上方的工具列找到「Setting」，點擊進入。
 
@@ -891,7 +891,7 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
 
 5. 等一小段時間後，重新整理頁面，可以看見上方出現網址：
 
-   「Your site is live at https://你github的名字.github.io/你設定的儲存庫名稱/」
+   「Your site is live at `https://你github的名字.github.io/你設定的儲存庫名稱/`」
 
 ### 四、進入網站
 
