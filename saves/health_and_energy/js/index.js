@@ -79,7 +79,7 @@ map.init();
 const pressedMap = {};
 const controlKeys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space'];
 
-let stop = false;
+
 
 document.addEventListener('keydown', function(event) {
   if (event.code === 'Space' && !pressedMap['Space']) {

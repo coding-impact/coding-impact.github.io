@@ -88,12 +88,10 @@ map.init();
 const pressedMap = {};
 const controlKeys = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'Space'];
 
-let stop = false;
+
 
 document.addEventListener('keydown', function(event) {
-  if (event.code === 'KeyC') {
-    stop = true;
-  }
+  
   if (event.code === 'Space' && !pressedMap['Space']) {
     player.shoot(camera, cursor, entityManager);
   }
@@ -130,9 +128,7 @@ function update() {
 }
 
 function render() {
-  if (stop) {
-    return;
-  }
+  
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   map.render(ctx, canvas, camera);
   entityManager.render(ctx, camera);
