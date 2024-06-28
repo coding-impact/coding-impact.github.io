@@ -180,7 +180,7 @@ export class BossBar extends UI {
 接下來就是在 `index.js` 加上載入 `UIManager` 的部分：
 
 ```js
-import {BossBar, UIManager} from './model/UI.js';
+import { BossBar, UIManager } from "./model/UI.js";
 // ...中間省略
 const uiManager = new UIManager();
 const bossBar = new BossBar(enemy);
@@ -189,11 +189,11 @@ bossBar.show();
 // ...中間省略
 function render() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  map.render(ctx, canvas, camera)
+  map.render(ctx, canvas, camera);
   entityManager.render(ctx, camera);
-  uiManager.render(ctx, canvas)
-  cursor.render(ctx)
-};
+  uiManager.render(ctx, canvas);
+  cursor.render(ctx);
+}
 // ...後面省略
 ```
 
@@ -243,14 +243,22 @@ export class Entity {
 並且修改 Sprite 的顯示部分
 
 ```js
-
 export class Sprite extends Entity {
   constructor(
-      x, y, height, boxW, boxH, boxOffsetX, boxOffsetY, maxHealth, maxEnergy,
-      animaMap) {
+    x,
+    y,
+    height,
+    boxW,
+    boxH,
+    boxOffsetX,
+    boxOffsetY,
+    maxHealth,
+    maxEnergy,
+    animaMap
+  ) {
     super(x, y);
 
-    this.stat = 'idle';
+    this.stat = "idle";
     this.animaMap = animaMap;
     this.height = height;
     this.boxW = boxW;
@@ -273,7 +281,12 @@ export class Sprite extends Entity {
   render(ctx, camera) {
     if (this.visiable) {
       this.animaMap[this.stat].render(
-          ctx, camera, this.pos.x, this.pos.y, this.height);
+        ctx,
+        camera,
+        this.pos.x,
+        this.pos.y,
+        this.height
+      );
     }
     this.renderHitBox(ctx, camera);
   }
@@ -284,10 +297,10 @@ export class Sprite extends Entity {
 然後在 `index.js`，移除原本的 `bossBar.show()`，並添加以下內容：
 
 ```js
-import {sleep} from './utils.js';
+import { sleep } from "./utils.js";
 // ...中間省略
 const enemy = new EvilWizard(32000, 31800, 512, 24, 96, 0, 32, 100, 100, {
-  idle: new Anima('assets/evil_wizard/Idle.png', 8, general_speed),
+  idle: new Anima("assets/evil_wizard/Idle.png", 8, general_speed),
 });
 enemy.hide();
 // ...中間省略
@@ -306,7 +319,7 @@ async function main() {
   await sleep(500);
   camera.target = player;
 }
-main().then()
+main().then();
 ```
 
 現在可以回到網頁上看看了，應該可以看到史詩級的動畫場景、完美的運鏡。
@@ -316,10 +329,10 @@ main().then()
 回到 `UI.js`，添加 `Text` 和 `TextManager`：
 
 ```js
-import {Vector} from '../utils.js';
+import { Vector } from "../utils.js";
 
 export class Text {
-  constructor(text, x, y, textAlign, color = '#eeeeee') {
+  constructor(text, x, y, textAlign, color = "#eeeeee") {
     this.text = text;
     this.textAlign = textAlign;
     this.color = color;
@@ -333,40 +346,50 @@ export class Text {
     ctx.fillStyle = this.color;
     ctx.font = this.font;
     ctx.textAlign = this.textAlign;
-    const textArray = this.text.split('');
-    const showArray =
-        textArray.slice(0, Math.round(textArray.length * this.progress));
-    for (let i = 0; i < Math.min(10, textArray.length - showArray.length);
-         i++) {
+    const textArray = this.text.split("");
+    const showArray = textArray.slice(
+      0,
+      Math.round(textArray.length * this.progress)
+    );
+    for (
+      let i = 0;
+      i < Math.min(10, textArray.length - showArray.length);
+      i++
+    ) {
       showArray.push(String.fromCharCode(Math.floor(Math.random() * 93 + 33)));
     }
-    ctx.fillText(showArray.join(''), this.pos.x, this.pos.y + this.height);
+    ctx.fillText(showArray.join(""), this.pos.x, this.pos.y + this.height);
 
     this.progress += this.speed;
     this.progress = Math.min(this.progress, 1);
   }
-};
+}
 export class TextManager {
   constructor(canvas) {
     this.canvas = canvas;
     this.padding = 16;
     this.textList = [];
-    this.newTextY = (this.canvas.height - 48*4)/2;
+    this.newTextY = (this.canvas.height - 48 * 4) / 2;
   }
   addText(text, color) {
-    const textObject =
-        new Text(text, this.canvas.width / 2, this.newTextY, 'center', color);
+    const textObject = new Text(
+      text,
+      this.canvas.width / 2,
+      this.newTextY,
+      "center",
+      color
+    );
     this.textList.push(textObject);
     this.newTextY += textObject.height;
     this.newTextY += this.padding;
     return textObject;
   }
   render(ctx) {
-    this.textList.forEach(text => {
+    this.textList.forEach((text) => {
       text.render(ctx);
     });
   }
-};
+}
 ```
 
 這裡不多做解釋，總之就是我在寫的時候，一時鬼迷心竅，加了一點酷炫的亂碼特效。總之有一個 `progress` 參數，負責判斷目前的文字顯示進度如何，之後就是顯示他，並且把剩餘的部分文字，用亂碼替代，最後再根據設定的速度，增加 `progress`。
@@ -374,26 +397,26 @@ export class TextManager {
 重新修改 `index.js`，添加史詩級字幕：
 
 ```js
-import {BossBar, TextManager, UIManager} from './model/UI.js';
+import { BossBar, TextManager, UIManager } from "./model/UI.js";
 
 const textManager = new TextManager(canvas);
 
 function render() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  map.render(ctx, canvas, camera)
+  map.render(ctx, canvas, camera);
   entityManager.render(ctx, camera);
-  uiManager.render(ctx, canvas)
+  uiManager.render(ctx, canvas);
   textManager.render(ctx);
-  cursor.render(ctx)
-};
+  cursor.render(ctx);
+}
 
 async function main() {
   await sleep(2000);
-  textManager.addText('第一關：青青草原');
-  textManager.addText('Stage 1: Grass Land');
+  textManager.addText("第一關：青青草原");
+  textManager.addText("Stage 1: Grass Land");
   await sleep(2000);
-  textManager.addText('莫名其妙的紫色大法師');
-  textManager.addText('The Mysterious Purple Mage');
+  textManager.addText("莫名其妙的紫色大法師");
+  textManager.addText("The Mysterious Purple Mage");
   await sleep(1000);
   enemy.pos = player.pos.copy();
   enemy.pos.y -= 400;
@@ -436,13 +459,20 @@ export class EntityManager {
   // ...中間省略
   render(ctx, canvas, camera) {
     this.entityList.sort(
-        (a, b) => (a.pos.y + a.boxH / 2 + a.boxOffsetY) -
-            (b.pos.y + b.boxH / 2 + b.boxOffsetY));
+      (a, b) =>
+        a.pos.y +
+        a.boxH / 2 +
+        a.boxOffsetY -
+        (b.pos.y + b.boxH / 2 + b.boxOffsetY)
+    );
     this.entityList = this.entityList.filter(
-        (entity) =>
-            !(entity.type === 'Bullet' &&
-              Math.abs(entity.pos.x - camera.pos.x) > canvas.width * 3 &&
-              Math.abs(entity.pos.x - camera.pos.x) > canvas.height * 3));
+      (entity) =>
+        !(
+          entity.type === "Bullet" &&
+          Math.abs(entity.pos.x - camera.pos.x) > canvas.width * 3 &&
+          Math.abs(entity.pos.x - camera.pos.x) > canvas.height * 3
+        )
+    );
     this.entityList.forEach((entity) => {
       entity.render(ctx, camera);
     });
@@ -456,7 +486,7 @@ export class EntityManager {
 export class Bullet extends Entity {
   constructor(x, y, power, accerate) {
     super(x, y);
-    this.type = 'Bullet';
+    this.type = "Bullet";
     this.power = power;
     this.accerate = accerate;
     this.speed = this.accerate.normal().multiply(this.power);
@@ -478,7 +508,7 @@ function render() {
   uiManager.render(ctx, canvas);
   textManager.render(ctx);
   cursor.render(ctx);
-};
+}
 ```
 
 回到網頁測試時，可以在 render 裡面添加一個，顯示實體數量的協助測試有沒有成功：
@@ -513,14 +543,16 @@ export class EvilWizard extends Sprite {
     if (!this.visiable) {
       return;
     }
-    entityManager.entityList.forEach(entity => {
+    entityManager.entityList.forEach((entity) => {
       // is Bullet
-      if (entity.type === 'Bullet') {
+      if (entity.type === "Bullet") {
         // have collision
-        if (((this.pos.x - this.boxW / 2 + this.boxOffsetX) < entity.pos.x) &&
-            (entity.pos.x < (this.pos.x + this.boxW / 2 + this.boxOffsetX)) &&
-            ((this.pos.y - this.boxH / 2 + this.boxOffsetY) < entity.pos.y) &&
-            (entity.pos.y < (this.pos.y + this.boxH / 2 + this.boxOffsetY))) {
+        if (
+          this.pos.x - this.boxW / 2 + this.boxOffsetX < entity.pos.x &&
+          entity.pos.x < this.pos.x + this.boxW / 2 + this.boxOffsetX &&
+          this.pos.y - this.boxH / 2 + this.boxOffsetY < entity.pos.y &&
+          entity.pos.y < this.pos.y + this.boxH / 2 + this.boxOffsetY
+        ) {
           entity.power /= 2;
           this.damage(entity.power);
         }
@@ -530,10 +562,9 @@ export class EvilWizard extends Sprite {
 }
 ```
 
-並且在 Sprite 添加傷害函式：
+並且在 `Sprite` 添加傷害函式：
 
 ```js
-
 export class Sprite extends Entity {
   // ...前面省略
   damage(amount) {
@@ -548,19 +579,19 @@ export class Sprite extends Entity {
    2. 檢查有沒有碰到
    3. 讓自己受傷
 
-最後記得在 EntityManager.update 添加檢查碰撞：
+最後記得在 `EntityManager.update` 添加檢查碰撞：
 
 ```js
 export class EntityManager {
   // ...前面省略
   update() {
     this.entityList.forEach((entity) => {
-      if (typeof entity.update === 'function') {
+      if (typeof entity.update === "function") {
         entity.update();
       }
     });
     this.entityList.forEach((entity) => {
-      if (typeof entity.checkCollision === 'function') {
+      if (typeof entity.checkCollision === "function") {
         entity.checkCollision(this);
       }
     });
@@ -579,7 +610,7 @@ export class EntityManager {
 
 但只有血條的跳動，顯然回饋感不夠強，所以這時候，就必須加入流血的特效。
 
-回到 entity.js，我們來設計一個粒子的類別吧！
+回到 `entity.js`，我們來設計一個粒子的類別吧！
 
 ```js
 export class Particle {
@@ -604,14 +635,14 @@ export class Particle {
 現在讓我們回到 `enemy.js`，添加流血特效：
 
 ```js
-import {Anima} from './anima.js';
-import {Particle, Sprite} from './entity.js';
+import { Anima } from "./anima.js";
+import { Particle, Sprite } from "./entity.js";
 
 class BloodParticle extends Particle {
   constructor(x, y) {
     super(x, y);
-    this.anima = new Anima('assets/particle/blood.png', 22, 1);
-    this.height = 100
+    this.anima = new Anima("assets/particle/blood.png", 22, 1);
+    this.height = 100;
   }
 }
 ```
@@ -623,14 +654,16 @@ export class EvilWizard extends Sprite {
     if (!this.visiable) {
       return;
     }
-    entityManager.entityList.forEach(entity => {
+    entityManager.entityList.forEach((entity) => {
       // is Bullet
-      if (entity.type === 'Bullet') {
+      if (entity.type === "Bullet") {
         // have collision
-        if (((this.pos.x - this.boxW / 2 + this.boxOffsetX) < entity.pos.x) &&
-            (entity.pos.x < (this.pos.x + this.boxW / 2 + this.boxOffsetX)) &&
-            ((this.pos.y - this.boxH / 2 + this.boxOffsetY) < entity.pos.y) &&
-            (entity.pos.y < (this.pos.y + this.boxH / 2 + this.boxOffsetY))) {
+        if (
+          this.pos.x - this.boxW / 2 + this.boxOffsetX < entity.pos.x &&
+          entity.pos.x < this.pos.x + this.boxW / 2 + this.boxOffsetX &&
+          this.pos.y - this.boxH / 2 + this.boxOffsetY < entity.pos.y &&
+          entity.pos.y < this.pos.y + this.boxH / 2 + this.boxOffsetY
+        ) {
           entity.power /= 2;
           entityManager.add(new BloodParticle(entity.pos.x, entity.pos.y));
           this.damage(entity.power);
@@ -649,16 +682,23 @@ export class EntityManager {
   // ...前面省略
   render(ctx, canvas, camera) {
     this.entityList.sort(
-        (a, b) => (a.pos.y + a.boxH / 2 + a.boxOffsetY) -
-            (b.pos.y + b.boxH / 2 + b.boxOffsetY));
+      (a, b) =>
+        a.pos.y +
+        a.boxH / 2 +
+        a.boxOffsetY -
+        (b.pos.y + b.boxH / 2 + b.boxOffsetY)
+    );
     this.entityList = this.entityList.filter(
-        (entity) =>
-            !(entity.type === 'Bullet' &&
-              Math.abs(entity.pos.x - camera.pos.x) > canvas.width * 3 &&
-              Math.abs(entity.pos.x - camera.pos.x) > canvas.height * 3));
+      (entity) =>
+        !(
+          entity.type === "Bullet" &&
+          Math.abs(entity.pos.x - camera.pos.x) > canvas.width * 3 &&
+          Math.abs(entity.pos.x - camera.pos.x) > canvas.height * 3
+        )
+    );
 
     this.entityList = this.entityList.filter((entity) => {
-      if (entity.hasOwnProperty('end')) {
+      if (entity.hasOwnProperty("end")) {
         if (entity.end) {
           // 用於已結束的 particle
           return false;
@@ -682,14 +722,374 @@ export class EntityManager {
 
 ## 敵人 AI
 
-- 敵人 AI
-- 敵人動作碰撞箱
+現在，玩家部分已經非常完美了，是時候來寫敵人的行為模式：
+
+先思考一下我們有哪些素材，我們有兩種攻擊：
+
+![attack 1](/pictures/Attack1.png)
+![attack 2](/pictures/Attack2.png)
+
+一種跑，和一種跳:
+
+![run](/pictures/Run.png)
+![jump](/pictures/Jump.png)
+
+根據我們有的這些素材，我設計了以下的攻擊模式：
+
+1. 首先，他會先「跑」向玩家
+2. 跑到目標後
+   1. 如果玩家在一定範圍內，就使用 Attack1
+   2. 如果不在的話，就「跳」向玩家，使用 Attack2
+
+對行為模式，有一點基礎的想像後，接下來就是慢慢實現它。
+
+### 敵人動畫
+
+我們先把整體框架做出一個雛形：
+
+```js
+export class EvilWizard extends Sprite {
+  constructor(target, ...args) {
+    super(...args);
+    this.target = target;
+  }
+  checkCollision(entityManager) { ... } // ...省略
+  play_animation_once(stat){}
+  update(){
+
+  }
+}
+```
+
+我們的攻擊動畫，一樣會採用 `stat` 的方式播放，而當中的 `player_animation_once` 就可以放讓動畫只執行一遍的邏輯：
+
+```js
+export class EvilWizard extends Sprite {
+  constructor(target, ...args) {
+    super(...args);
+    this.target = target;
+    this.remaining_animation_frame = 0; // 目前正在進行的，不可中斷的動畫，的剩餘幀數（這裡的幀數指的是 EntityManager.render 的幀數）
+    this.oldHealth = this.health;
+  }
+  // ...中間省略
+  play_animation_once(stat) {
+    this.stat = stat;
+    this.animaMap[this.stat].step = 0;
+    this.remaining_animation_frame =
+      (this.animaMap[this.stat].length - 0.5) / this.animaMap[this.stat].speed;
+  }
+  update() {
+    if (this.remaining_animation_frame > 0) {
+      this.remaining_animation_frame--;
+      // 動畫執行中，在這邊放攻擊傷害判定
+    } else if (this.remaining_animation_frame <= 0) {
+      // 動作執行完畢，可以判斷接下來要執行什麼動作
+
+      if (this.health < this.oldHealth) {
+        this.play_animation_once("attack1");
+      } else {
+        this.stat = "idle";
+      }
+    }
+    // this.speed = this.target.pos.add(this.pos.multiply(-1)).normal();
+    this.oldHealth = this.health;
+  }
+}
+```
+
+我們先寫一個，受傷之後，嘗試攻擊的測試模式，除此之外還額外把 `target` 加入了參數。
+
+記得把目標加入參數，和新的動畫也加入 `animaMap`：
+
+```js
+const enemy = new EvilWizard(
+  player,
+  32000,
+  31800,
+  512,
+  24,
+  96,
+  0,
+  32,
+  100,
+  100,
+  {
+    idle: new Anima("assets/evil_wizard/Idle.png", 8, general_speed),
+    attack1: new Anima("assets/evil_wizard/Attack1.png", 8, general_speed),
+  }
+);
+```
+
+這時候測試一下，應該可以看見敵人對你的攻擊作出反擊：
+
+![enemy counter attack](/pictures/enemy_counter_attack.png)
+
+那麼接下來，就是要讓敵人跑到指定位置，並且我們增加一個新機制，怒氣值，只有當怒氣值累積到一定程度時，才會進行攻擊，並順便添加受傷動畫：
+
+```js
+import { Vector } from "../utils.js";
+
+export class EvilWizard extends Sprite {
+  constructor(target, ...args) {
+    super(...args);
+    this.target = target;
+    this.remaining_animation_frame = 0; // 目前正在進行的，不可中斷的動畫，的剩餘幀數（這裡的幀數指的是
+    // EntityManager.render 的幀數）
+    this.anger = 0;
+
+    this.oldHealth = this.health;
+
+    this.dest = undefined;
+  }
+  runTo(x, y) {
+    this.dest = new Vector(x, y);
+    this.moveSpeed = 10;
+    this.stat = "run";
+  }
+  // ...中間省略
+  update() {
+    if (this.remaining_animation_frame > 0) {
+      this.remaining_animation_frame--;
+      // 動畫執行中，在這邊放攻擊傷害判定
+    } else if (this.remaining_animation_frame <= 0) {
+      // 動作執行完畢，可以判斷接下來要執行什麼動作
+
+      if (this.health < this.oldHealth) {
+        this.play_animation_once("damaged");
+        this.anger += Math.random();
+      } else if (this.anger >= 1.5) {
+        this.anger -= 1.5;
+        this.runTo(this.target.pos.x, this.target.pos.y);
+      } else if (this.stat == "run") {
+        this.pos = this.pos.add(
+          this.dest.add(this.pos.multiply(-1)).normal().multiply(this.moveSpeed)
+        );
+        if (this.dest.add(this.pos.multiply(-1)).length() < 20) {
+          this.stat = "idle";
+        }
+      } else {
+        this.stat = "idle";
+        this.anger += 0.01 * Math.random();
+      }
+    }
+    // this.speed = this.target.pos.add(this.pos.multiply(-1)).normal();
+    this.oldHealth = this.health;
+  }
+}
+```
+
+並記得把跑步和受傷加入 `animaMap`
+
+```js
+const enemy = new EvilWizard(
+  player,
+  32000,
+  31800,
+  512,
+  24,
+  96,
+  0,
+  32,
+  100,
+  100,
+  {
+    idle: new Anima("assets/evil_wizard/Idle.png", 8, general_speed),
+    run: new Anima("assets/evil_wizard/Run.png", 8, general_speed),
+    attack1: new Anima("assets/evil_wizard/Attack1.png", 8, general_speed),
+    damaged: new Anima("assets/evil_wizard/Damaged.png", 3, general_speed),
+  }
+);
+```
+
+這時候敵人會跑了！但是...
+
+![enemy run backward](/pictures/enemy_run_backward.png)
+
+他卻是向後跑的！不過不用擔心，我們只需要替 `Sprite` 添加一個 `direction` 參數，並在 `Anima.render` 裡面，根據 `direction` 決定要不要水平翻轉就行了。
+
+修改 `Sprite`
+
+```js
+export class Sprite extends Entity {
+  constructor(
+      x, y, height, boxW, boxH, boxOffsetX, boxOffsetY, maxHealth, maxEnergy,
+      animaMap) {
+    super(x, y);
+
+    this.stat = 'idle';
+    this.animaMap = animaMap;
+    this.direction = 1;
+    this.height = height;
+    this.boxW = boxW;
+    this.boxH = boxH;
+    this.boxOffsetX = boxOffsetX;
+    this.boxOffsetY = boxOffsetY;
+
+    this.maxHealth = maxHealth;
+    this.maxEnergy = maxEnergy;
+    this.health = this.maxHealth;
+    this.energy = this.maxEnergy;
+    this.visiable = true;
+  }
+  // ...中間省略
+  render(ctx, camera) {
+    if (this.visiable) {
+      this.animaMap[this.stat].render(
+          ctx, camera, this.pos.x, this.pos.y, this.height, this.direction);
+    }
+    this.renderHitBox(ctx, camera);
+  }
+  // ...後面省略
+}
+```
+
+修改 `Anima`
+
+```js
+export class Anima {
+  constructor(src, length, speed) {
+    this.step = 0;
+    this.image = new Image();
+    this.image.src = src;
+    this.speed = speed;
+    this.length = length;
+  }
+  render(ctx, camera, rawX, rawY, height, direction, rotate = 0) {
+    const sWidth = (this.image.width / this.length);
+    const scale = height / this.image.height
+    const sx = Math.floor(this.step) * sWidth;
+
+    const displayWidth = sWidth * scale;
+    const displayHeight = height;
+
+    const x = rawX - camera.pos.x;
+    const y = rawY - camera.pos.y;
+
+    ctx.save();
+    ctx.scale(direction, 1);
+    ctx.translate(
+        (x - displayWidth / 2) * direction + displayWidth * direction * 0.5,
+        y - displayHeight / 2 + displayHeight * 0.5)
+    ctx.rotate(rotate);
+    ctx.imageSmoothingEnabled = false;
+
+    ctx.drawImage(
+        this.image, sx, 0, sWidth, this.image.height,
+        displayWidth * direction * (-0.5), displayHeight * (-0.5),
+        displayWidth * direction, displayHeight);
+
+    ctx.restore();
+    this.step += this.speed;
+    this.step %= this.length;
+  }
+};
+```
+
+修改 `Bullet` 和 `Particle`：
+
+```js
+export class SmallFireBall extends Bullet {
+  constructor(...args) {
+    super(...args);
+    this.animation = smallFireBallAnima;
+  }
+  render(ctx, camera) {
+    this.animation.render(
+        ctx, camera, this.pos.x, this.pos.y, 32, 1,
+        Math.atan2(this.speed.y, this.speed.x) - Math.PI / 2);
+  }
+}
+```
+
+```js
+export class Particle {
+  constructor(x, y, anima, repeat = false) {
+    this.pos = new Vector(x, y);
+    this.anima = anima;
+    this.height = undefined;
+    this.repeat = repeat;
+    this.end = false;
+  }
+  render(ctx, camera) {
+    this.anima.render(ctx, camera, this.pos.x, this.pos.y, this.height, 1);
+    if (!this.repeat && this.anima.step === 0) {
+      this.end = true;
+    }
+  }
+}
+```
+
+這時候，再幫 `EvilWizard` 添加轉向的功能：
+
+```js
+export class EvilWizard extends Sprite {
+  // ...前面省略
+  reface(useDest = false) {
+    let facePos = undefined;
+    if (useDest) {
+      facePos = this.dest;
+    } else {
+      facePos = this.target.pos;
+    }
+    if (facePos.x > this.pos.x) {
+      this.direction = 1;
+    } else {
+      this.direction = -1;
+    }
+  }
+  runTo(x, y) {
+    this.dest = new Vector(x, y);
+    this.reface(true);   // <-- 添加這裡
+    this.moveSpeed = 10;
+    this.stat = "run";
+  }
+  // ...中間省略
+  update() {
+    if (this.remaining_animation_frame > 0) {
+      this.remaining_animation_frame--;
+      // 動畫執行中，在這邊放攻擊傷害判定
+    } else if (this.remaining_animation_frame <= 0) {
+      // 動作執行完畢，可以判斷接下來要執行什麼動作
+
+      if (this.health < this.oldHealth) {
+        this.play_animation_once("damaged");
+        this.anger += Math.random();
+      } else if (this.anger >= 1.5) {
+        this.anger -= 1.5;
+        this.runTo(this.target.pos.x, this.target.pos.y);
+      } else if (this.stat == "run") {
+        this.pos = this.pos.add(
+          this.dest.add(this.pos.multiply(-1)).normal().multiply(this.moveSpeed)
+        );
+        if (this.dest.add(this.pos.multiply(-1)).length() < 20) {
+          this.stat = "idle";
+        }
+      } else {
+        this.reface();   // <-- 添加這裡
+        this.stat = "idle";
+        this.anger += 0.01 * Math.random();
+      }
+    }
+    // this.speed = this.target.pos.add(this.pos.multiply(-1)).normal();
+    this.oldHealth = this.health;
+  }
+}
+```
+
+現在他能夠轉向了！
+
+![enemy reface](/pictures/enemy_reface.png)
+
+[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/enemy_move_and_reface)
+
+### 敵人動作碰撞箱
 
 ## 勝負判定
 
 - 自由發揮
 
 - Entity
+
   - Sprite
     - Playaer
     - EvilWizard
