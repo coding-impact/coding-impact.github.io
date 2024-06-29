@@ -23,5 +23,9 @@ Repository：[https://github.com/coding-impact/EvilWizard](https://github.com/co
 
 - [7/3 上午 HTML、CSS、JS 教學，並部署網頁](course1.md)
 - [7/3 下午 Canvas 教學](course2.md)
-- [製作遊戲]([course3.md](https://github.com/coding-impact/coding-impact.github.io/tree/main/saves))
+- [製作遊戲](https://github.com/coding-impact/coding-impact.github.io/tree/main/saves)
 
+1. 下載整份教學講義
+   1. 直接用 vscode 打開，點 live server，可以看到直接看到每一個版本的 demo
+   2. 同時也能看到原始碼
+2. 使用 [遊戲製作教學](https://github.com/coding-impact/coding-impact.github.io/tree/main/saves) 進行教學，讓我同時可以照著講義講解，並且隨時可以上去展示程式碼部分
