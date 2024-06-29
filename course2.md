@@ -347,10 +347,6 @@ canvas.addEventListener('mousemove', function(event) {
 
 我們會採用物件導向，和 [Entity Component System](https://en.wikipedia.org/wiki/Entity_component_system) 的方式來寫，整個遊戲引擎都包含在內。
 
-為什麼要使用物件導向？未完待補
-
-為什麼要使用 Entity Component System？未完待補
-
 而啟動遊戲開發可以分成三步：
 
 1. 先在邏輯層面寫出遊戲雛形
