@@ -2,7 +2,7 @@
 
 如果從資料產生的方式來分析的話（簡稱資料流），我們預計做的遊戲的結構會是這樣的：  
 
-![basic data flowchart](./pictures/basic_data_flow.png)  
+![basic data flowchart](/pictures/basic_data_flow.png)  
 
 當中，玩家的滑鼠會移動角色的準心，按鍵操控角色方向，與發射。  
 更新資料包含了計算鏡頭移動、所有實體被看到的正確的型態、敵人行動等。  

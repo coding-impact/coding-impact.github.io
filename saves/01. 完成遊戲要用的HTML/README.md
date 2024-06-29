@@ -66,7 +66,7 @@ Repository：[https://coding-impact.github.io/EvilWizard/](https://coding-impact
 
 關於字型，Helvetica 和 Arial 的差別可以看下圖。
 
-![hel vs arial](./pictures/Helvarial.png)
+![hel vs arial](/pictures/Helvarial.png)
 
 ## 鍵盤與滑鼠控制
 

@@ -20,7 +20,7 @@ js/
 
 這時，我們先仔細觀察，`assets/map/grass.png`，看看這個我挑選的素材怎麼樣。
 
-![assets/map/grass.png](./pictures/grass.png)
+![assets/map/grass.png](/pictures/grass.png)
 
 乍看之下，好像會覺得，這是一個 16 \* 16 的素材圖片，但是經過仔細研究之後，就會發現，其實他是 8 \* 8。
 
@@ -125,7 +125,7 @@ export class Map {
 drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 ```
 
-![canvas draw image explain](./pictures/canvas_drawimage.jpg)
+![canvas draw image explain](/pictures/canvas_drawimage.jpg)
 
 可以看到，我們需要先透過 `blockId` 找到 `sx` 和 `sy`，再根據相機位置，和方塊在地圖中的位置，找出 `dx` 和 `dy`。
 
