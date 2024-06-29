@@ -9,6 +9,8 @@
 - 角色動畫
 - 發射子彈
 
+[點此下載，目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/complete_html)
+
 ## 畫面渲染與角色控制
 
 上次我們已經在邏輯層面上稍微寫了一點東西，因此現在可以來實作他們了。
