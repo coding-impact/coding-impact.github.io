@@ -4,17 +4,19 @@
 > 製作遊戲基本架構
 
 ## 目錄
-  * [認識canvas](#認識canvas)
-    + [Canvas 基本架構](#canvas-基本架構)
-    + [使用Canvas繪製方形](#使用canvas繪製方形)
-    + [使用Canvas繪製路徑](#使用canvas繪製路徑)
-    + [使用Canvas繪製弧形](#使用canvas繪製弧形)
-    + [改變繪圖顏色](#改變繪圖顏色)
-    + [使用Canvas繪製影像](#使用canvas繪製影像)
-  * [製作遊戲要用的 HTML、CSS](#製作遊戲要用的-htmlcss)
-    + [鍵盤與滑鼠控制](#鍵盤與滑鼠控制)
-    + [製作課程目標需要知道的 JS 觀念](#製作課程目標需要知道的-js-觀念)
-    + [在邏輯層面寫出遊戲雛形](#在邏輯層面寫出遊戲雛形)
+- [7/3 下午](#73-下午)
+  - [目錄](#目錄)
+  - [認識Canvas](#認識canvas)
+    - [Canvas 基本架構](#canvas-基本架構)
+  - [使用Canvas繪製方形](#使用canvas繪製方形)
+  - [使用Canvas繪製路徑](#使用canvas繪製路徑)
+  - [使用Canvas繪製弧形](#使用canvas繪製弧形)
+  - [改變繪圖顏色](#改變繪圖顏色)
+  - [使用Canvas繪製影像](#使用canvas繪製影像)
+  - [製作遊戲要用的 HTML、CSS](#製作遊戲要用的-htmlcss)
+  - [鍵盤與滑鼠控制](#鍵盤與滑鼠控制)
+  - [製作課程目標需要知道的 JS 觀念](#製作課程目標需要知道的-js-觀念)
+  - [在邏輯層面寫出遊戲雛形](#在邏輯層面寫出遊戲雛形)
 
 ## 認識Canvas
 
@@ -326,7 +328,12 @@ canvas.addEventListener('mousemove', function(event) {
 
 如果都沒有問題，那就代表非常好，我們理論上，是可以做出這個遊戲的，至少需要的技術（讀取玩家輸入、渲染畫面）我們現在都有了，所以剩下的就是單純的程式了。
 
-如果你做的都沒問題，應該要看起來像這樣：[DEMO](https://coding-impact.github.io/saves/complete_html/)[原始碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/complete_html/)  
+如果你做的都沒問題，應該要看起來像這樣：
+
+![html for game](/pictures/html_for_game.png)
+
+[DEMO](https://coding-impact.github.io/saves/complete_html/)  
+[目前原始碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/complete_html/)  
 
 ## 製作課程目標需要知道的 JS 觀念
 
