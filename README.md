@@ -21,7 +21,7 @@ Repository：[https://github.com/coding-impact/EvilWizard](https://github.com/co
 
 ## 課程目錄
 
-- [7/3 上午](course1.md)
-- [7/3 下午](course2.md)
-- [7/4](course3.md)
-- [7/5](course4.md)
+- [7/3 上午 HTML、CSS、JS 教學，並部署網頁](course1.md)
+- [7/3 下午 Canvas 教學，製作遊戲雛形](course2.md)
+- [7/4 製作遊戲](course3.md)
+- [7/5 完成遊戲](course4.md)
