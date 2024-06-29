@@ -268,7 +268,7 @@ Repository：[https://coding-impact.github.io/EvilWizard/](https://coding-impact
 
 ## 鍵盤與滑鼠控制
 
-- 在 `index.html` 的旁邊建立一個檔案：`index.js`，這將會是我們操控 `canvas` 元素的程式碼擺放的位置，不過他目前的用處將會是讓我們展示如何監聽鍵盤與滑鼠事件。
+- 在 `index.html` 的旁邊建立一個資料夾：`js`，再在裡面建立一個檔案：`index.js`，這將會是我們操控 `canvas` 元素的程式碼擺放的位置，不過他目前的用處將會是讓我們展示如何監聽鍵盤與滑鼠事件。
 
 在 `index.html` 中添加引入 `index.js` 的部分，如下：
 
