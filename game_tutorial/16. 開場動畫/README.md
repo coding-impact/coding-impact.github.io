@@ -15,26 +15,7 @@ export const sleep = (milliseconds) => {
 };
 ```
 
-並且我們要讓 Sprite 是可以被隱藏，或是顯示的。
-
-```js
-export class Entity {
-  constructor(x, y) {
-    this.pos = new Vector(x, y);
-    this.speed = new Vector(0, 0);
-    this.visiable = true;
-  }
-  update() {
-    this.pos = this.pos.add(this.speed);
-  }
-  hide() {
-    this.visiable = false;
-  }
-  show() {
-    this.visiable = true;
-  }
-}
-```
+並且我們要讓 `Sprite` 是可以被隱藏，或是顯示的。
 
 並且修改 Sprite 的顯示部分
 

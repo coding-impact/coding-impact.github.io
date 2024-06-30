@@ -77,7 +77,7 @@ export class EvilWizard extends Sprite {}
 ```js
 import { EvilWizard } from "./model/entity.js";
 
-const enemy = new EvilWizard(player, 32000, 31800, 512, {
+const enemy = new EvilWizard(32000, 31800, 512, {
   idle: new Anima("assets/evil_wizard/Idle.png", 8, general_speed),
 });
 entityList.push(enemy);

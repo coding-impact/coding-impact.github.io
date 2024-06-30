@@ -20,8 +20,6 @@ export class Sprite extends Entity {
     boxH,
     boxOffsetX,
     boxOffsetY,
-    maxHealth,
-    maxEnergy,
     animaMap
   ) {
     super(x, y);

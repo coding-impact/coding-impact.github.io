@@ -175,7 +175,9 @@ export class Tileset {
     this.image = new Image();
     this.image.src = src;
   }
-
+  getRandomBlockId() {
+    return 1;
+  }
   render(ctx, x, y, blockSize, blockId) {
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(
