@@ -1,5 +1,5 @@
 
-## 開場小動畫
+# 開場小動畫
 
 沒錯，看到可以開關的 BossBar，是不是讓人很想要做一點 opening animation？
 
