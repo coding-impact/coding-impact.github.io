@@ -18,6 +18,7 @@ Repository：[https://github.com/coding-impact/EvilWizard](https://github.com/co
 - 在 ***上課前*** 註冊好 [GitHub](https://github.com) 帳號，避免上課時太多人註冊，而被黑名單。（我之前發生過）
 - 熟悉的開發環境，建議自備筆電、或是鍵盤之類的，以習慣為主。
   - 當然你也可以什麼都不帶，在現場使用遠端開發環境，或是其他免費的線上環境，但開發效率可能就會打一些折扣。
+  - 也可以選擇在電腦上安裝 VSCode，但缺點就是每次上課要重裝。
 
 ## 課程目錄
 
@@ -28,4 +29,4 @@ Repository：[https://github.com/coding-impact/EvilWizard](https://github.com/co
 1. 下載整份教學講義 [點此下載](https://github.com/coding-impact/coding-impact.github.io/archive/refs/heads/main.zip)
    1. 解壓縮後，用 vscode 打開，點 live server，可以看到直接看到每一個版本的 demo
    2. 同時也能看到原始碼
-2. 使用 [遊戲製作教學](https://github.com/coding-impact/coding-impact.github.io/tree/main/saves) 進行教學，讓我同時可以照著講義講解，並且隨時可以上去展示程式碼部分
+2. 使用 [遊戲製作教學](https://github.com/coding-impact/coding-impact.github.io/tree/main/game_tutorial) 進行教學，讓我同時可以照著講義講解，並且隨時可以上去展示程式碼部分
