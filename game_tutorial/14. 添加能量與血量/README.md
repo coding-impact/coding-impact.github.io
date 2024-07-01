@@ -84,5 +84,3 @@ export class Player extends Sprite {
 ```
 
 可以到網頁上瘋狂發射子彈，確認子彈是否會因為沒有能量，而射不出來。
-
-[目前原始碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/health_and_energy)

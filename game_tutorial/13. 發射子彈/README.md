@@ -169,5 +169,3 @@ export class SmallFireBall extends Bullet {
 這時候，你會發現，子彈完美的轉向正確的方向了！
 
 ![bullet rotate](/pictures/bullet_rotate.png)
-
-[目前原始碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/shoot_bullet)

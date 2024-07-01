@@ -198,5 +198,3 @@ function render() {
 這時候查看網頁，就能看見美麗的 BossBar 了。
 
 ![bossbar](/pictures/beautiful_bossbar.png)
-
-[目前原始碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/player_boss_bar)

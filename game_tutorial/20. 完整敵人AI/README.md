@@ -169,5 +169,3 @@ const enemy =
 ![enemy attack](/pictures/enemy_attack.png)
 
 如果一切都照著做，應該能見敵人跑過來朝你攻擊。
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/enemy_full_controll)

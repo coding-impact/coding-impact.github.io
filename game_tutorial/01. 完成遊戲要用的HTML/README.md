@@ -133,6 +133,3 @@ canvas.addEventListener('mousemove', function(event) {
 如果你做的都沒問題，應該要看起來像這樣：
 
 ![html for game](/pictures/html_for_game.png)
-
-[DEMO](https://coding-impact.github.io/saves/complete_html/)  
-[目前原始碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/complete_html/)  
