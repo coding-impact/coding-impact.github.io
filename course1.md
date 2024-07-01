@@ -31,14 +31,14 @@
   - [JavaScript 基本觀念](#javascript-基本觀念)
     - [一、變數、資料型態](#一變數資料型態)
     - [二、運算子、條件式](#二運算子條件式)
-    - [三、函式](#三函式)
-    - [四、陣列](#四陣列)
-    - [五、物件](#五物件)
+    - [三、迴圈](#三迴圈)
+    - [四、函式](#四函式)
+    - [五、陣列](#五陣列)
+    - [六、物件](#六物件)
   - [JavaScript 常見語法](#javascript-常見語法)
-    - [一、取得元素](#一取得元素)
+    - [一、按鈕 button](#一按鈕-button) 
     - [二、取得元素的css](#二取得元素的css)
-    - [三、按鈕 button](#三按鈕-button)
-    - [四、內建函式 Math](#四內建函式-math)
+    - [三、內建函式 Math](#三內建函式-math)
   - [在 GitHub 部屬網站](#在-github-部屬網站)
     - [一、建立儲存庫](#一建立儲存庫)
     - [二、將網站檔案上傳GitHub](#二將網站檔案上傳github)
@@ -89,6 +89,8 @@
 4. 點擊畫面右下角Go Live按鈕
 
 5. 彈出網頁視窗則成功
+
+(10 min)
 
 接下來將會帶大家認識html、css、js的基本語法，可以在程式中自由發揮，設計你的網站。
 
@@ -186,6 +188,8 @@
      > <img src="https://www.comicworld.com.tw/ULimages/ActPics/148/EventLogo.png">
      > <a href="https://www.comicworld.com.tw/" target="_blank">CWT官網</a>
 
+(10 min practice)
+
 ### 三、列表、表格
 
    - **列表**：分為有序列表與無序列表
@@ -249,6 +253,8 @@
      > </table>
 
 <hr>
+
+(10 min practice)
 
 ## CSS 基本觀念
 
@@ -347,6 +353,8 @@
 *補充：想選中a元素裡面所有的b元素，也可以寫成 `a b { 設定 }` 的形式。*
 
 *[想練習選擇器的使用方法，可以來玩玩這個網站。](https://flukeout.github.io/)*
+
+(10 min practice)
 
 ### 三、區塊 —— div與span
 
@@ -517,6 +525,7 @@ css的各大設定都有顏色分支，因此優先介紹，後面出現color都
 
   [另有填入1、3、4個值的用法，可參考這個網站。](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position#values)
 
+(15 min practice)
 
 ### 五、盒子模型 Box Model
 
@@ -594,7 +603,18 @@ css的各大設定都有顏色分支，因此優先介紹，後面出現color都
   ```
 
 *補充：如果你想去掉兩個元素之間的空隙，可以試著把margin跟padding都設為0。*
-  
+
+可以把margin，border，padding一起設定，透過個別調整來觀察不同處。
+```css
+div{
+  margin: 10px;
+  border: blue 5px dotted;
+  padding: 5px;
+}
+  ```
+
+(15 min practice)
+
 ### 六、互動效果
 
 簡單的互動效果有兩種，元素碰到鼠標時改變css設定的 `元素:hover` 或鼠標點擊時改變的 `元素:active`。
@@ -627,6 +647,8 @@ css的各大設定都有顏色分支，因此優先介紹，後面出現color都
 >  opacity: 0.5;
 > }
 > ```
+
+這邊只聽觀念可能較難理解，但等接下來我們介紹button後就會更直觀。
 
 *參考資料：[CSS語法](https://www.1keydata.com/css-tutorial/tw/syntax.php)*
 
@@ -709,7 +731,29 @@ let e;           // undefined，根本沒這東西
      }
      ```
 
-### 三、函式
+### 三、迴圈
+
+for迴圈：希望程式重複到某個次數才停止
+
+```js
+let c = 10;
+for(let i = 0; i < c; i++) {
+  console.log(i);
+}
+```
+
+while迴圈：希望程式重複到特定條件才停止
+
+```js
+let count=0;
+let d = 10;
+while(count < d) {
+  console.log(count);
+  count++;
+}
+```
+
+### 四、函式
 
 手很痠不想同一段程式寫好幾遍，就用函式吧。
 
@@ -717,11 +761,14 @@ let e;           // undefined，根本沒這東西
 function greeting(game) {
   console.log(game + "，啟動!");
 }
+
 greeting("原神");   // "原神，啟動！"
 greeting("星鐵");   // "星鐵，啟動！"
 ```
 
-### 四、陣列
+*待補，箭頭函式
+
+### 五、陣列
 
 把同型態的東西存在一起。
 
@@ -731,19 +778,44 @@ console.log(games[0]); // "原神"
 console.log(games.length); // 3
 ```
 
-### 五、物件
+### 六、物件
 
-把不同型態的東西存在一起。
+可以設定特定的函式，以方便使用。（接下來還會有其他舉例幫助了解，這邊看不懂沒關係。）
 
 ```js
-let student = {
-  name: "醬油",
-  age: 20,
-  isStudent: true
+import {Vector} from './utils.js';
+
+class Entity {
+  constructor(x, y) {
+    this.pos = new Vector(x, y);
+  }
+  update() {
+    // 每次更新要執行的函式
+  }
+  render() {
+    // 每次繪製要執行的函式
+  }
 };
-console.log(student.name); // "醬油"
-console.log(person["age"]); // 20
+
+//使用的時候
+let entityList = [];
+function update(){
+    for (let i = 0; i < entityList.length; i++) {
+        entityList[i].update();
+    }
+}
+function render(){
+    for (let i = 0; i < entityList.length; i++) {
+        entityList[i].render();
+    }
+}
+
+function gameLoop() {
+    update();
+    render();
+}
 ```
+*待補
 
 恭喜，到這裡你已經學會了js的邏輯！
 
@@ -751,30 +823,34 @@ console.log(person["age"]); // 20
 
 基於本課程寫js主要是為了配合網頁，我們首先來介紹如何在js中取得html的元素。
 
-### 一、取得元素
+### 一、按鈕 button
 
-有選到就行，沒有要求一定要用哪個。不過常用的是getElementById，比較不容易選錯。
+按鈕是網頁互動的基礎，製作按鈕可以學到很多實用的程式。
 
-- 直接選：
-  ```js
-  let element1 = document.querySelector('.select');    // 第一個有 .select 的元素
-  let element2 = document.querySelectorAll('.select'); // 所有擁有 .select 的元素
-  ```
+首先我們在html新增一個按鈕：
+```html
+<button id="test">我是按鈕</button>
+```
 
-- 用標籤選：
-  ```js
-  let element3 = document.getElementsByTagName('div'); // 所有的<div>
-  ```
+接著在js取得，取得的方式如下：
+```js
+let btn = document.getElementById('test');
+```
+*待補
 
-- 用class名稱選：
-  ```js
-  let element4 = document.getElementsByClassName('select'); // 所有擁有class select的元素
-  ```
+接下來就能在js做你想要的效果了。
 
-- 用id名稱選（推薦）：
-  ```js
-  let element5 = document.getElementById('fancy');     // 擁有id fancy的元素
-  ```
+假設我們想讓它被點擊時跳出「點到我了」視窗，且不能再次點擊：
+```js
+btn.addEventListener('click', () => {　 // 監聽此元素是否被點擊，若被點擊則執行內容
+  alert("點到我了");                     // 跳出「點到我了」視窗
+  btn.disabled = true;                 // 設為禁止點擊
+});
+```
+簡單的網頁互動元素就完成了。
+
+另外常用的設定有： `display`、`visibility`
+
 
 ### 二、取得元素的css
 
@@ -785,34 +861,7 @@ console.log(person["age"]); // 20
   element5.style.color = "red";
   ```
 
-### 三、按鈕 button
-
-按鈕是網頁互動的基礎，製作按鈕可以學到很多實用的程式。
-
-首先我們在html新增一個按鈕：
-```html
-<button id="test">我是按鈕</button>
-```
-
-接著在js取得：
-```js
-let btn = document.getElementById('test');
-```
-
-接下來就能在js做你想要的效果了。
-
-假設我們想讓它被點擊時跳出「點到我了」視窗，且不能再次點擊：
-```js
-test.addEventListener('click', () => {　 // 監聽此元素是否被點擊，若被點擊則執行內容
-  alert("點到我了");                     // 跳出「點到我了」視窗
-  test.disabled = true;                 // 設為禁止點擊
-});
-```
-簡單的網頁互動元素就完成了。
-
-另外常用的設定有： `display`、`visibility`
-
-### 四、內建函式 Math
+### 三、內建函式 Math
 
 常見跟數學有關的功能都有，[有興趣可以看看這個網站。](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
@@ -846,7 +895,23 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
 
 有兩種方式，你可以：
 
-- **使用終端機**（有點麻煩，但如果你已經有git就很快）
+- **使用GitHub for Desktop**（簡單好用）
+
+  1. 下載 [GitHub for Desktop](https://desktop.github.com/)並開啟，登入你的GitHub帳號。
+  
+  2. 點選右邊「Add」，找到「Clone Repository」。
+  
+  3. 輸入剛才設定的儲存庫名稱，找到你的儲存庫。
+  
+  4. 設定Local Path，接著會需要把程式碼放在這裡。
+  
+  5. 將你的程式碼放到步驟4.設定的Local Path，可以看見GitHub Desktop自動偵測到新的檔案資料。
+  
+  6. 確認無誤後，在Summary跟Description填入你想填的內容，接著選擇「Commit to main」。
+  
+  7. 偵測到的檔案資料會全部消失，代表已經被上傳了，可以在History標籤查看紀錄。
+
+- **使用終端機**（補充，不推薦；但如果你已經有git就很快）
 
   1. 下載[Git](https://git-scm.com/downloads)，除了設定安裝路徑，一直點Next就好。
 
@@ -866,22 +931,6 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
      git push -u origin main
      ```
   5. 這時可能會跳出登入github的視窗，登入後終端機會繼續跑。
-
-- **使用GitHub for Desktop**（更簡單）
-
-  1. 下載 [GitHub for Desktop](https://desktop.github.com/)並開啟，登入你的GitHub帳號。
-  
-  2. 點選右邊「Add」，找到「Clone Repository」。
-  
-  3. 輸入剛才設定的儲存庫名稱，找到你的儲存庫。
-  
-  4. 設定Local Path，接著會需要把程式碼放在這裡。
-  
-  5. 將你的程式碼放到步驟4.設定的Local Path，可以看見GitHub Desktop自動偵測到新的檔案資料。
-  
-  6. 確認無誤後，在Summary跟Description填入你想填的內容，接著選擇「Commit to main」。
-  
-  7. 偵測到的檔案資料會全部消失，代表已經被上傳了，可以在History標籤查看紀錄。
 
 ### 三、啟用 GitHub page
 

@@ -134,13 +134,15 @@ ctx.stroke();
 
 這段程式可以畫出圓心在(75, 75)，右下角的1/4圓弧。
 
-另外是貝茲曲線，繪畫規則如圖：
+*補充*
+
+貝茲曲線，繪畫規則如圖：
 
 <img src="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_curves.png">
 
-- `quadraticCurveTo(參考點1X, 參考點1Y, X, Y)`：從目前位置，根據參考點1，畫一條二次貝茲曲線到(X, Y)。
+- `quadraticCurveTo(參考點1X, 參考點1Y, X, Y)`：從目前位置，根據參考點1，畫一條貝茲曲線到(X, Y)。
 
-- `bezierCurveTo(參考點1X, 參考點1Y, 參考點2X, 參考點2Y, X, Y)`：從目前位置，根據參考點1、2，畫一條三次貝茲曲線到(X, Y)。
+- `bezierCurveTo(參考點1X, 參考點1Y, 參考點2X, 參考點2Y, X, Y)`：從目前位置，根據參考點1、2，畫一條貝茲曲線到(X, Y)。
 
 ```js
 var ctx = canvas.getContext("2d");
@@ -165,6 +167,7 @@ ctx.fill();
 
 [漸變顏色的做法可以參考這個網站。](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)
 
+(30 min practice)
 
 ## 使用Canvas繪製影像
 
@@ -185,6 +188,35 @@ draw();
 - `drawImage(圖片, 切割起點X, 切割起點Y, 切割寬, 切割高, X, Y, 寬, 高)`：
 
   可以切割圖片的寫法，前面設定如何切割圖片，後面與前一條程式相同。
+
+```js
+export class Tileset {
+  constructor(src, length, rawBlockSize) {
+    this.rawBlockSize = rawBlockSize;
+    this.length = length;
+
+    this.image = new Image();
+    this.image.src = src;
+  }
+  getRandomBlockId() {
+    return 1;
+  }
+  render(ctx, x, y, blockSize, blockId) {
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(
+      this.image,
+      (blockId % this.length) * this.rawBlockSize,
+      Math.floor(blockId / this.length) * this.rawBlockSize,
+      this.rawBlockSize,
+      this.rawBlockSize,
+      x,
+      y,
+      blockSize,
+      blockSize
+    );
+  }
+}
+```
 
 *參考資料：[Canvas教學文件](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial)*
 
