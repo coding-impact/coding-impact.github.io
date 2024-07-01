@@ -1,6 +1,8 @@
 
 # 製作遊戲要用的 HTML、CSS
 
+[此階段完成品 DEMO](/game_tutorial/01.%20完成遊戲要用的HTML/)
+
 既然我們已經學會了那麼多技能，那麼是時候來製作遊戲了對吧！  
 以下是我們這次預計製作的內容：[https://coding-impact.github.io/EvilWizard/](https://coding-impact.github.io/EvilWizard/)  
 Repository：[https://coding-impact.github.io/EvilWizard/](https://coding-impact.github.io/EvilWizard/)  
