@@ -60,6 +60,8 @@ function draw() {
 
 這樣一個可以畫畫的畫布就建立完成了，接下來我們會使用函式進行作畫。
 
+(5-10 min practice)
+
 ## 使用Canvas繪製方形
 
 開始前我們必須先了解canvas的座標計算方法，如圖：
@@ -134,9 +136,9 @@ ctx.stroke();
 
 這段程式可以畫出圓心在(75, 75)，右下角的1/4圓弧。
 
-*補充*
+*以下為補充（看看就好）*
 
-貝茲曲線，繪畫規則如圖：
+我們把可以彎在不同地方的曲線稱為貝茲曲線，繪畫規則如圖：
 
 <img src="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes/canvas_curves.png">
 
@@ -165,6 +167,26 @@ ctx.fill();
 
 - `fillStyle = 顏色`：改變填滿的顏色。
 
+
+紅色填滿的方形：
+```js
+const ctx = canvas.getContext("2d");
+
+ctx.fillStyle = red;
+ctx.fillRect(10, 10, 50, 50);
+```
+
+綠色外框的圓形：
+```js
+const ctx = canvas.getContext("2d");
+
+ctx.strokeStyle = green;
+ctx.beginPath();
+ctx.arc(75, 75, 50, 0, Math.PI*2, false);
+ctx.stroke();
+```
+
+
 [漸變顏色的做法可以參考這個網站。](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)
 
 (30 min practice)
@@ -185,10 +207,12 @@ function draw() {
 }  
 draw();
 ```
+
 - `drawImage(圖片, 切割起點X, 切割起點Y, 切割寬, 切割高, X, Y, 寬, 高)`：
 
   可以切割圖片的寫法，前面設定如何切割圖片，後面與前一條程式相同。
 
+範例程式：
 ```js
 export class Tileset {
   constructor(src, length, rawBlockSize) {
@@ -221,3 +245,5 @@ export class Tileset {
 *參考資料：[Canvas教學文件](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial)*
 
 <hr>
+
+接下來就正式開始製作遊戲啦，請打開下一份講義～
