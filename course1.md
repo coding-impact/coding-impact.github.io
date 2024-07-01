@@ -732,7 +732,26 @@ let e;           // undefined，根本沒這東西
      ```
 
 ### 三、迴圈
-*待補
+
+for迴圈：希望程式重複到某個次數才停止
+
+```js
+let c = 10;
+for(let i = 0; i < c; i++) {
+  console.log(i);
+}
+```
+
+while迴圈：希望程式重複到特定條件才停止
+
+```js
+let count=0;
+let d = 10;
+while(count < d) {
+  console.log(count);
+  count++;
+}
+```
 
 ### 四、函式
 
