@@ -766,7 +766,48 @@ greeting("原神");   // "原神，啟動！"
 greeting("星鐵");   // "星鐵，啟動！"
 ```
 
-*待補，箭頭函式
+箭頭函式 arrow function：
+
+```js
+const greeting = (game) => {
+  console.log(game + "，啟動!");
+};
+// 使用const可以防止函式不小心被更改
+
+greeting("原神");   // "原神，啟動！"
+greeting("星鐵");   // "星鐵，啟動！"
+```
+
+大多時候兩種寫法是通用的，主要差在this指向的物件不同。
+箭頭函式不會創造屬於自己的this，只會繼承他外層的那個this，所以會有差異。
+
+```js
+var name = '香蕉貓'
+var animal = {
+  name: '芒狗',
+
+  callName: function () {          // 一般function >> 創造屬於自己的this，代表animal
+    console.log('1', this.name);   // 1 芒狗
+    setTimeout(() => {             // arrow function >> 看外面那層的this，是animal
+      console.log('2', this.name); // 2 芒狗
+      console.log('3', this);      // 3 animal (this指到 animal 這個物件)
+    }, 10);
+  },
+
+  callName2: () => {               // arrow function >> 看外面那層的this，是window
+    console.log('4', this.name);   // 4 香蕉貓
+    setTimeout(() => {             // arrow function >> 看外面那層的this，是window
+      console.log('5', this.name); // 5 香蕉貓
+      console.log('6', this);      // 6 window (this指到 window)
+    }, 10);
+  }
+}
+
+animal.callName();
+animal.callName2();
+```
+
+[範例程式結果可以看這裡。](https://donlana.github.io/jsSample/)
 
 ### 五、陣列
 
@@ -774,13 +815,13 @@ greeting("星鐵");   // "星鐵，啟動！"
 
 ```js
 let games = ["原神", "星穹鐵道", "明日方舟"];
-console.log(games[0]); // "原神"
+console.log(games[0]);     // "原神"
 console.log(games.length); // 3
 ```
 
 ### 六、物件
 
-可以設定特定的函式，以方便使用。（接下來還會有其他舉例幫助了解，這邊看不懂沒關係。）
+可以設定特定的函式，以方便使用。（接下來還會舉其他例子幫助了解，這邊看不懂沒關係。）
 
 ```js
 import {Vector} from './utils.js';
@@ -788,13 +829,10 @@ import {Vector} from './utils.js';
 class Entity {
   constructor(x, y) {
     this.pos = new Vector(x, y);
+    // 設定pos（位置）是一個x，y座標的集合（vector）
   }
-  update() {
-    // 每次更新要執行的函式
-  }
-  render() {
-    // 每次繪製要執行的函式
-  }
+  update() { // 每次更新要執行的函式 }
+  render() { // 每次繪製要執行的函式 }
 };
 
 //使用的時候
@@ -802,11 +840,13 @@ let entityList = [];
 function update(){
     for (let i = 0; i < entityList.length; i++) {
         entityList[i].update();
+        // 用一點（.）加上裡面設定的函式名稱（update()）呼叫
     }
 }
 function render(){
     for (let i = 0; i < entityList.length; i++) {
         entityList[i].render();
+        // 用一點（.）加上裡面設定的函式名稱（render()）呼叫
     }
 }
 
@@ -815,13 +855,12 @@ function gameLoop() {
     render();
 }
 ```
-*待補
 
 恭喜，到這裡你已經學會了js的邏輯！
 
 ## JavaScript 常見語法
 
-基於本課程寫js主要是為了配合網頁，我們首先來介紹如何在js中取得html的元素。
+基於本課程寫js主要是為了配合網頁，我們會著重介紹如何在js製作與html頁面互動的效果。
 
 ### 一、按鈕 button
 
@@ -832,34 +871,41 @@ function gameLoop() {
 <button id="test">我是按鈕</button>
 ```
 
-接著在js取得，取得的方式如下：
+接著需要在js取得這顆按鈕。
+
+這次課程我們大多使用 `document.getElementById('id名稱')`，也就是以id名稱取得元素的方式。
+
+除此之外還有很多取得元素的方法，因為與課程較無關聯，避免同學混淆，故暫不贅述。
+
 ```js
 let btn = document.getElementById('test');
 ```
-*待補
 
 接下來就能在js做你想要的效果了。
 
-假設我們想讓它被點擊時跳出「點到我了」視窗，且不能再次點擊：
+例如，我們想讓上面 btn 變數取得的這顆按鈕，被點擊時跳出「點到我了」視窗，且不能再次點擊：
 ```js
 btn.addEventListener('click', () => {　 // 監聽此元素是否被點擊，若被點擊則執行內容
   alert("點到我了");                     // 跳出「點到我了」視窗
-  btn.disabled = true;                 // 設為禁止點擊
+  btn.disabled = true;                  // 設為禁止點擊
 });
 ```
 簡單的網頁互動元素就完成了。
 
-另外常用的設定有： `display`、`visibility`
+另外常用的設定有： `display`、`visibility`，也可以查查看他們的用法。
 
+這部分可以參考上面提供的範例網站的程式碼。
 
 ### 二、取得元素的css
 
-做完前一點，我們在js抓到想要的元素了，接著我們還能指定它的css樣式：
+我們也能從js指定並改變元素的css樣式，例如：
 
   ```js
   let element5 = document.getElementById('fancy');
   element5.style.color = "red";
   ```
+
+使我們可以設計hover與active以外的互動效果。
 
 ### 三、內建函式 Math
 
@@ -869,7 +915,7 @@ btn.addEventListener('click', () => {　 // 監聽此元素是否被點擊，若
 let randnum = Math.random();     // 取一個0～1之間的隨機小數
 
 let ceilnum = Math.ceil(0.95);   // 1；取大於此數的最小整數（天花板）
-let floornum = Math.floor(0.95); // 0；取小於此數的最大整數（地板）
+let floornum = Math.floor(0.95); // 0；取小於此數的最大整數（地板），這個比較常用。
 
 let maxnum = Math.max(1, 2, 3);  // 3；取括號裡最大值。可以放陣列。
 let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列。
@@ -930,7 +976,9 @@ let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列�
      git remote add origin https://github.com/你github的名字/你設定的儲存庫名稱.git
      git push -u origin main
      ```
-  5. 這時可能會跳出登入github的視窗，登入後終端機會繼續跑。
+     （因為git是個大課程，這次營隊不會介紹git的語法，有興趣的可以自己搜尋看看。）
+     
+  6. 這時可能會跳出登入github的視窗，登入後終端機會繼續跑。
 
 ### 三、啟用 GitHub page
 
