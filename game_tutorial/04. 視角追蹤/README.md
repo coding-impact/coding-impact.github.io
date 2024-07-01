@@ -78,5 +78,3 @@ class Player extends Entity {
   // ... 後面省略
 }
 ```
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/trackable_camera/)

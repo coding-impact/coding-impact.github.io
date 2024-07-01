@@ -358,5 +358,3 @@ export class EvilWizard extends Sprite {
 現在他能夠轉向了！
 
 ![enemy reface](/pictures/enemy_reface.png)
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/enemy_move_and_reface)

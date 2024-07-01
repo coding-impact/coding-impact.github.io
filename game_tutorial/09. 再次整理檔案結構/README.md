@@ -81,5 +81,3 @@ import { EvilWizard } from "./model/enemy.js";
 import { Map, Tileset } from "./model/map.js";
 import { Player } from "./model/player.js";
 ```
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/restructure_2)

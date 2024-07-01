@@ -179,5 +179,3 @@ function gameLoop() {
 ```
 
 至此，整個遊戲就完成了！
-
-[程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/complete)

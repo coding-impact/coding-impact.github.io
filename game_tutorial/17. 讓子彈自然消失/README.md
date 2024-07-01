@@ -81,5 +81,3 @@ export class EntityManager {
 如圖
 
 ![bullet disappear log](/pictures/bullet_disappear_log.png)
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/bullet_disappear)

@@ -117,5 +117,3 @@ export class Player extends Entity {
 import { Camera } from "./model/camera.js";
 import { Player } from "./model/entity.js";
 ```
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/restructure/)

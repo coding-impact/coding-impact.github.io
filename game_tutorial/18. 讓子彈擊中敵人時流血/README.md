@@ -187,5 +187,3 @@ export class EntityManager {
 一切都做完後，可以回到網頁上測試看看，應該能看見有流血特效
 
 ![enemy bleed](/pictures/enemy_bleed.png)
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/bullet_collision)

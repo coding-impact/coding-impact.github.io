@@ -341,5 +341,3 @@ import { randomWeightChoose } from "../utils.js";
 至此，我們就有無比美麗的背景啦！
 
 ![beautiful map](/pictures/beautiful_map.png)
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/cebb6465dd6c4afcf75dcadb1a8cca03f8d20740/saves/map_generation)

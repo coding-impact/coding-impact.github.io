@@ -212,5 +212,3 @@ let player = new Player(32000, 32000, 512, {
 ![beautiful animation](/pictures/beautiful_animation.png)
 
 非常美麗的動畫！
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/add_animation)

@@ -105,5 +105,3 @@ export class EntityManager {
 如此一來，就不會發生錯誤的遮擋了！真是太完美了！
 
 至於開關碰撞箱的部分，我們未來還會有其他地方可以開關他，目前由於開發需要，可以先繼續保持顯示碰撞箱。
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/display_hitbox)

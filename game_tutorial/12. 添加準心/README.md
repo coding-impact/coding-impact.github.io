@@ -96,5 +96,3 @@ canvas {
 這邊還額外加了一些增進效能的設定，可能可以有一些幫助。
 
 這樣應該就會顯示一個可愛的小黑點在你的游標位置了，這將會是我們的準心。
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/cursor)

@@ -107,5 +107,3 @@ export class EntityManager {
 ```
 
 那麼這時，你們會發現這幾乎沒有任何屁用，這是因為我們的圖片座標基準沒有置中，所以是時候要顯示精確的碰撞框了！
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/entity_manager)

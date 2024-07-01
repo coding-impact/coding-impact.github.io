@@ -153,5 +153,3 @@ export class EvilWizard extends Sprite {
 添加完了之後，玩家就會受傷了
 
 ![player damaged](/pictures/player_damaged.png)
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/enemy_attack_hitbox)

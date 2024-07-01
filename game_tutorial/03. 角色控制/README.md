@@ -233,5 +233,3 @@ function gameLoop() {
 }
 requestAnimationFrame(gameLoop);
 ```
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/movable_rect/)

@@ -216,5 +216,3 @@ async function main() {
 
 ![epic intro](/pictures/epic_intro2.png)
 ![epic intro](/pictures/epic_intro.png)
-
-[目前程式碼](https://github.com/coding-impact/coding-impact.github.io/blob/main/saves/opening_animation)
