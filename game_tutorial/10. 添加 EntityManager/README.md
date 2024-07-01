@@ -1,3 +1,4 @@
+# 添加 EntityManager
 
 有了乾淨的結構後，我們終於可以回到我們的重點，也就是寫一個 `EntityManager`。
 
