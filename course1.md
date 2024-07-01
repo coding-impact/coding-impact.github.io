@@ -90,7 +90,7 @@
 
 5. 彈出網頁視窗則成功
 
-(10 min)
+(10 min practice)
 
 接下來將會帶大家認識html、css、js的基本語法，可以在程式中自由發揮，設計你的網站。
 
@@ -809,6 +809,8 @@ animal.callName2();
 
 [範例程式結果可以看這裡。](https://donlana.github.io/jsSample/)
 
+(5-10 min practice)
+
 ### 五、陣列
 
 把同型態的東西存在一起。
@@ -920,6 +922,8 @@ let floornum = Math.floor(0.95); // 0；取小於此數的最大整數（地板�
 let maxnum = Math.max(1, 2, 3);  // 3；取括號裡最大值。可以放陣列。
 let minnum = Math.min(1, 2, 3);  // 1；取括號裡最小值。可以放陣列。
 ```
+
+(20-25 min practice)
 
 <hr>
 
