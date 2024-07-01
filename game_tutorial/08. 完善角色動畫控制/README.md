@@ -1,6 +1,8 @@
 
 # 完整角色控制動畫、敵人動畫
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/08.%20完善角色動畫控制/)
+
 那麼，接下來就是完善整套動畫系統
 
 先將 index.js 中，關於 Player 的部分改成這樣：

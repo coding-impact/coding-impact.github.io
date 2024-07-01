@@ -1,6 +1,8 @@
 
 # 追蹤視角
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/04.%20視角追蹤/)
+
 現在我們的角色可以動了，那麼是時候來加入攝影機，讓攝影機跟隨角色來移動。
 
 ```js

@@ -1,6 +1,8 @@
 
 # 整理檔案結構
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/05.%20整理檔案結構/)
+
 想必大家到現在，肯定會覺得：「天哪！`index.js` 也太亂了吧！這樣我們要怎麼繼續快樂的寫下去？」
 
 我們現在就來解決這個問題！先在 `js` 資料夾內，建立另外一個資料夾，叫做 `model`，並在裡面添加兩個檔案，分別叫做 `camera.js` 和 `entity.js`。如下：

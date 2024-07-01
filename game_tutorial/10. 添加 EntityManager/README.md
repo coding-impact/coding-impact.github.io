@@ -1,5 +1,7 @@
 # 添加 EntityManager
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/10.%20添加%20EntityManager/)
+
 有了乾淨的結構後，我們終於可以回到我們的重點，也就是寫一個 `EntityManager`。
 
 我們首先知道我們有以下幾種狀況會用 `EntityManager`：

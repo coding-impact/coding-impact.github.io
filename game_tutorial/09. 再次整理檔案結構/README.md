@@ -1,5 +1,7 @@
 
-# 實體管理函式
+# 再次整理檔案結構
+
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/09.%20再次整理檔案結構/)
 
 但是在解決這個問題之前，我們得再次整理我們的檔案結構。
 

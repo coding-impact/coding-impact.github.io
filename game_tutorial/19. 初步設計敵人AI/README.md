@@ -1,6 +1,8 @@
 
 # 初步設計敵人 AI
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/19.%20初步設計敵人AI/)
+
 現在，玩家部分已經非常完美了，是時候來寫敵人的行為模式：
 
 先思考一下我們有哪些素材，我們有兩種攻擊：

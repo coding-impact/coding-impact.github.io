@@ -1,6 +1,8 @@
 
 # 完整敵人AI
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/20.%20完整敵人AI/)
+
 不過現在還有一點小問題，那就是敵人會在開場動畫完成前，就開始跑來跑去，所以可以添加一個 start 來讓敵人知道什麼時候才開始動作：
 
 ```js

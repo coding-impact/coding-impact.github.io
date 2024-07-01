@@ -1,6 +1,8 @@
 
 # 地圖生成與渲染
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/06.%20地圖生成與渲染/)
+
 這時候，我們能夠繪製漂亮的角色了，甚至還有充滿動感的相機追蹤，但地圖卻是一片空白，非常可惜，所以現在就來解決這個問題。
 
 不過首先，我們得先下載我們的素材庫，到這裡下載這次遊戲會用的全部素材：[assets.zip](https://github.com/coding-impact/coding-impact.github.io/blob/main/resources/assets.zip)

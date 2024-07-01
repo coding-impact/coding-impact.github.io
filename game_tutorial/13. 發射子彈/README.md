@@ -1,6 +1,8 @@
 
 # 角色發射子彈
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/13.%20發射子彈/)
+
 我們現在有準心了，所以終於可以發射子彈，在 `Player` 裡面添加一個發射子彈的 `function` 吧！
 
 我們會需要 `camera`、`cursor` 和 `entitymanager` 這三個參數。前兩者是為了組合出游標的世界位置，後者是為了要添加子彈，

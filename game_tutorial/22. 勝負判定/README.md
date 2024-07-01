@@ -1,6 +1,8 @@
 
 # 勝負判定
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/22.%20勝負判定/)
+
 那麼剩下來的，就是播放敵人的死亡動畫，首先，我們先確認我們有敵人的死亡動畫在 animaMap 裡面。
 
 ```js

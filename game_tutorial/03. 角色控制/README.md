@@ -1,6 +1,8 @@
 
 # 畫面渲染與角色控制
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/03.%20角色控制/)
+
 上次我們已經在邏輯層面上稍微寫了一點東西，因此現在可以來實作他們了。
 
 ## 畫布縮放

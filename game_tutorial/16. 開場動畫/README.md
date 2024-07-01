@@ -1,6 +1,8 @@
 
 # 開場小動畫
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/16.%20開場動畫/)
+
 沒錯，看到可以開關的 BossBar，是不是讓人很想要做一點 opening animation？
 
 所以我們來做開場動畫吧！

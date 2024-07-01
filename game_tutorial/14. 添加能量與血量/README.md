@@ -1,6 +1,8 @@
 
 # 添加能量與血量
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/14.%20添加能量與血量/)
+
 不過我們在製作碰撞傷害和特效之前，我們先來讓玩家和敵人，有血量和能量好了。
 
 修改 `Sprite`，添加血量與能量設定。

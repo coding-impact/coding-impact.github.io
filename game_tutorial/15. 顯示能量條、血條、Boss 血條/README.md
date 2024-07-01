@@ -1,6 +1,8 @@
 
 # 顯示血量與魔力條與 BossBar
 
+[此階段完成品 DEMO](https://coding-impact.github.io/game_tutorial/15.%20顯示能量條、血條、Boss%20血條/)
+
 我們的角色有能量與血條後，接下來就該來顯示他們：
 
 我們直接在 `Player` 的渲染部分，加一個顯示能量條和血條的部分就行了，畢竟其他實體應該不太需要。
