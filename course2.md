@@ -11,6 +11,11 @@
   - [改變繪圖顏色](#改變繪圖顏色)
   - [使用Canvas繪製影像](#使用canvas繪製影像)
 
+## JS補充與練習
+
+[JavaScript 從零到一開始編寫程式語言](https://hackmd.io/@PocDoc/Hy7DgBFPK )
+
+
 ## 認識Canvas
 
 上午我們已經學了html、css與js的基本知識，現在讓我們進一步學習canvas吧。
