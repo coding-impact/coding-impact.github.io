@@ -197,16 +197,16 @@ ctx.fill();
 
 ## 改變繪圖顏色
 
-- `strokeStyle = 顏色`：改變畫出的邊框的顏色。
+- `strokeStyle = "顏色"`：改變畫出的邊框的顏色。
 
-- `fillStyle = 顏色`：改變填滿的顏色。
+- `fillStyle = "顏色"`：改變填滿的顏色。
 
 
 紅色填滿的方形：
 ```js
 const ctx = canvas.getContext("2d");
 
-ctx.fillStyle = red;
+ctx.fillStyle = "red";
 ctx.fillRect(10, 10, 50, 50);
 ```
 
@@ -214,7 +214,7 @@ ctx.fillRect(10, 10, 50, 50);
 ```js
 const ctx = canvas.getContext("2d");
 
-ctx.strokeStyle = green;
+ctx.strokeStyle = "green";
 ctx.beginPath();
 ctx.arc(75, 75, 50, 0, Math.PI*2, false);
 ctx.stroke();
