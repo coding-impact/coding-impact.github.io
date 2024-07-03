@@ -16,6 +16,33 @@
 [JavaScript 從零到一開始編寫程式語言](https://hackmd.io/@PocDoc/Hy7DgBFPK )
 
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="style.css"> <!-- 寫進對應的css檔名 -->
+</head>
+<body>
+    <button id="t">test</button>
+    <script src="script.js"></script> <!-- 寫進對應的js檔名 -->
+</body>
+</html>
+```
+
+```js
+let btn = document.getElementById('t');
+
+btn.addEventListener('click', () => {
+
+    for (let i = 1; i <= 9; i++) {
+        console.log(2 + "*" + i + "=" + i * 2);
+    }
+});
+```
+
 ## 認識Canvas
 
 上午我們已經學了html、css與js的基本知識，現在讓我們進一步學習canvas吧。
